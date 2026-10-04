@@ -9,6 +9,7 @@ import time
 from datetime import date
 
 import httpx
+import sentry_sdk
 from pydantic import BaseModel, Field, ValidationError
 
 from app.services.catalog import ProductCatalog
@@ -102,14 +103,27 @@ class OllamaExtractor:
             ],
         }
         last_error = "no attempt made"
-        for _ in range(self.retries + 1):
+        for attempt in range(1, self.retries + 2):
             try:
-                res = self.client.post(
-                    f"{self.base_url}/api/chat", json=payload, timeout=self.timeout_s
-                )
-                res.raise_for_status()
-                content = res.json()["message"]["content"]
-                return LLMOrder.model_validate(json.loads(content))
+                with sentry_sdk.start_span(op="gen_ai.request", name=f"chat {self.model}") as span:
+                    # Message text and customer names are deliberately not attached: in local
+                    # mode they must not leave the machine, and that includes telemetry.
+                    span.set_data("gen_ai.operation.name", "chat")
+                    span.set_data("gen_ai.provider.name", "ollama")
+                    span.set_data("gen_ai.request.model", self.model)
+                    span.set_data("gen_ai.request.temperature", 0)
+                    span.set_data("secondo.attempt", attempt)
+                    res = self.client.post(
+                        f"{self.base_url}/api/chat", json=payload, timeout=self.timeout_s
+                    )
+                    res.raise_for_status()
+                    body = res.json()
+                    if "prompt_eval_count" in body:
+                        span.set_data("gen_ai.usage.input_tokens", body["prompt_eval_count"])
+                    if "eval_count" in body:
+                        span.set_data("gen_ai.usage.output_tokens", body["eval_count"])
+                    content = body["message"]["content"]
+                    return LLMOrder.model_validate(json.loads(content))
             except httpx.TimeoutException as exc:
                 # A timeout will very likely repeat; retrying only doubles the wait.
                 raise ExtractionError(f"Model timed out after {self.timeout_s:.0f}s.") from exc

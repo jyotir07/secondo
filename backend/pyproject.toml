@@ -13,6 +13,7 @@ dependencies = [
     "python-multipart>=0.0.9",
     "python-dotenv>=1.0",
     "tzdata>=2024.1",
+    "sentry-sdk[fastapi]>=2.35",
 ]
 
 [project.optional-dependencies]

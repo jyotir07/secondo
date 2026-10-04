@@ -2,6 +2,7 @@ from collections import defaultdict
 from datetime import date, timedelta
 
 import numpy as np
+import sentry_sdk
 
 from app.models import (
     Business,
@@ -87,6 +88,17 @@ class PlanningService:
         return plan
 
     def generate(self, target: date, today: date) -> KitchenPlan:
+        with sentry_sdk.start_span(
+            op="secondo.plan.generate", name="Generate kitchen plan"
+        ) as span:
+            plan = self._generate(target, today)
+            span.set_data("secondo.plan.target_date", target.isoformat())
+            span.set_data("secondo.plan.model", plan.model_name)
+            span.set_data("secondo.plan.items", len(plan.items))
+            span.set_data("secondo.plan.warnings", len(plan.warnings))
+            return plan
+
+    def _generate(self, target: date, today: date) -> KitchenPlan:
         existing = [p for p in self.repo.list_plans(self.business.id) if p.target_date == target]
         if any(p.status == PlanStatus.APPROVED for p in existing):
             raise PlanConflict(

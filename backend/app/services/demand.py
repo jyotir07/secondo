@@ -4,6 +4,7 @@ from contextlib import AbstractContextManager
 from datetime import date, timedelta
 
 import pandas as pd
+import sentry_sdk
 
 from app.models import Business, Forecast
 from app.repository import Repository
@@ -117,7 +118,12 @@ class DemandService:
         with self.lock:
             if key not in self.cache:
                 try:
-                    self.cache[key] = backtest(history, providers)
+                    with sentry_sdk.start_span(
+                        op="secondo.forecast.backtest", name="Backtest forecast models"
+                    ) as span:
+                        span.set_data("secondo.providers", [p.name for p in providers])
+                        span.set_data("secondo.history.open_days", len(history))
+                        self.cache[key] = backtest(history, providers)
                 except Exception as exc:  # noqa: BLE001 - any model failure degrades to baselines
                     self._runtime_failure(exc)
         return self.cache[key] if key in self.cache else self.evaluate(today)

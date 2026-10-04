@@ -12,6 +12,7 @@ from datetime import date
 
 import numpy as np
 import pandas as pd
+import sentry_sdk
 
 log = logging.getLogger(__name__)
 
@@ -109,11 +110,18 @@ class TabPFNForecaster:
         test = long[long["date"].isin(days)]
 
         started = time.perf_counter()
-        model = self._regressor()
-        model.fit(train[FEATURES].to_numpy(), train["target"].to_numpy())
-        # One forward pass yields both the mean and the quantiles.
-        main = model.predict(test[FEATURES].to_numpy(), output_type="main", quantiles=[0.1, 0.9])
-        mean, (p10, p90) = main["mean"], main["quantiles"]
+        with sentry_sdk.start_span(op="secondo.model.tabpfn", name="TabPFN fit + predict") as span:
+            span.set_data("secondo.tabpfn.train_rows", len(train))
+            span.set_data("secondo.tabpfn.predict_rows", len(test))
+            span.set_data("secondo.tabpfn.n_estimators", self.n_estimators)
+            span.set_data("secondo.tabpfn.device", self.device)
+            model = self._regressor()
+            model.fit(train[FEATURES].to_numpy(), train["target"].to_numpy())
+            # One forward pass yields both the mean and the quantiles.
+            main = model.predict(
+                test[FEATURES].to_numpy(), output_type="main", quantiles=[0.1, 0.9]
+            )
+            mean, (p10, p90) = main["mean"], main["quantiles"]
         log.info(
             "TabPFN: %d train rows, %d predictions in %.1fs",
             len(train),

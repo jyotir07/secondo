@@ -2,6 +2,8 @@ import logging
 import time
 from datetime import date
 
+import sentry_sdk
+
 from app.config import Settings
 from app.services.catalog import ProductCatalog
 from app.services.extraction import ExtractionError, ExtractionResult, RuleBasedExtractor
@@ -39,6 +41,17 @@ class ExtractionService:
         return self._ping[1], self._ping[2]
 
     def extract(self, text: str, catalog: ProductCatalog, today: date) -> ExtractionResult:
+        with sentry_sdk.start_span(op="secondo.extract", name="Read customer message") as span:
+            result = self._extract(text, catalog, today)
+            span.set_data("secondo.extraction.provider", result.provider)
+            span.set_data("secondo.extraction.fallback_used", result.fallback_used)
+            span.set_data("secondo.extraction.items", len(result.items))
+            span.set_data("secondo.extraction.confidence", result.confidence)
+            if result.fallback_reason:
+                span.set_data("secondo.extraction.fallback_reason", result.fallback_reason)
+            return result
+
+    def _extract(self, text: str, catalog: ProductCatalog, today: date) -> ExtractionResult:
         if not self.uses_model:
             return self.rules.extract(text, catalog, today)
 
@@ -48,6 +61,10 @@ class ExtractionService:
                 return self.ollama.extract(text, catalog, today)
             except ExtractionError as exc:
                 log.warning("Gemma extraction failed, using rules: %s", exc)
+                # Ollama was up but the model misbehaved: worth an event, unlike "not running".
+                sentry_sdk.capture_message(
+                    f"Gemma extraction fell back to rules: {exc}", level="warning"
+                )
                 reason = str(exc)
                 self._ping = None  # re-check reachability next time
         else:

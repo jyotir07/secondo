@@ -138,6 +138,7 @@ Everything is optional; see `backend/.env.example` and `frontend/.env.example`.
 | `OLLAMA_URL`, `OLLAMA_MODEL`, `OLLAMA_TIMEOUT_S` | `http://127.0.0.1:11434`, `gemma3:4b`, `60` | Local model endpoint |
 | `FORECAST_PROVIDER` | `tabpfn` | `tabpfn`, `weekday_average` or `historical_average` |
 | `CORS_ORIGINS` | `http://localhost:3000` | Only needed if the browser calls FastAPI directly |
+| `SENTRY_DSN`, `SENTRY_ENVIRONMENT`, `SENTRY_TRACES_SAMPLE_RATE` | unset, `local`, `1.0` | Sentry error monitoring and tracing; off without a DSN |
 | `BACKEND_URL` (frontend) | `http://127.0.0.1:8000` | Where Next.js forwards `/api/*` |
 
 ### Tests and checks
@@ -189,6 +190,7 @@ properties.
   owner's machine. Gemma runs through a local Ollama server, so customer messages are never sent
   to a cloud LLM.
 - TabPFN runs locally on CPU. The only network access is the one-time download of model weights.
+- If Sentry is enabled, events carry timings, model names, token counts and error messages, but never the message text or customer names, and `send_default_pii` is off. Tests never report to Sentry.
 - **Settings → Export all my data** downloads every stored record as JSON.
 - Only what the plan needs is stored: a display name, dietary constraints and notes per
   customer, with no phone numbers.
@@ -216,7 +218,7 @@ properties.
 | **TabPFN** | ✅ Implemented and measured | `backend/app/services/tabpfn_provider.py`, results table above |
 | Render | ❌ Not done | No deployment exists yet |
 | MongoDB Atlas | ❌ Not done | Persistence is SQLite only, behind a `Repository` interface (`backend/app/repository.py`) where an Atlas adapter would fit |
-| Sentry | ❌ Not done | Failures are logged locally |
+| **Sentry** | ✅ Implemented and verified against a real Sentry project | Error monitoring + tracing (`backend/app/observability.py`), off unless `SENTRY_DSN` is set. Custom spans: `secondo.extract` → `gen_ai.request` (Gemma call: model, tokens, attempt), `secondo.plan.generate`, `secondo.forecast.backtest`, `secondo.model.tabpfn`. Gemma failures while Ollama is up and TabPFN crashes become issues. A real trace showed plan generation at 22.3 s, dominated by three ~7 s TabPFN runs. |
 | ElevenLabs | ❌ Not done | No voice briefing |
 
 ## Known limitations
