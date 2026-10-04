@@ -1,6 +1,8 @@
+import os
 from dataclasses import replace
 from datetime import date
 from pathlib import Path
+from uuid import uuid4
 
 import pytest
 from fastapi.testclient import TestClient
@@ -22,12 +24,28 @@ def settings():
         extraction_provider="rules",
         forecast_provider="weekday_average",
         sentry_dsn=None,  # a developer's backend/.env must not make tests report to Sentry
+        mongodb_uri=None,  # the repo fixture decides the backend explicitly
+        elevenlabs_api_key=None,  # tests must never spend real ElevenLabs credits
     )
 
 
 @pytest.fixture
 def repo():
-    return SQLiteRepository(":memory:")
+    # SECONDO_TEST_BACKEND=mongodb runs the whole suite against MONGODB_URI, one throwaway
+    # database per test.
+    if os.getenv("SECONDO_TEST_BACKEND") == "mongodb":
+        from app.repository_mongo import MongoRepository
+
+        database = f"secondo_test_{uuid4().hex[:12]}"
+        mongo = MongoRepository(os.environ["MONGODB_URI"], database=database)
+        yield mongo
+        # Atlas "read and write" roles may not drop databases; dropping every collection is
+        # allowed and Atlas removes the empty database itself.
+        for name in mongo._db.list_collection_names():
+            mongo._db.drop_collection(name)
+        mongo.close()
+    else:
+        yield SQLiteRepository(":memory:")
 
 
 @pytest.fixture

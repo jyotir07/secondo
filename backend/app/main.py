@@ -8,12 +8,21 @@ from app.observability import init_sentry
 from app.repository import Repository, SQLiteRepository
 
 
+def open_repository(settings: Settings) -> Repository:
+    """MongoDB Atlas when MONGODB_URI is set (hosted), otherwise a local SQLite file."""
+    if settings.mongodb_uri:
+        from app.repository_mongo import MongoRepository  # noqa: PLC0415
+
+        return MongoRepository(settings.mongodb_uri)
+    return SQLiteRepository(settings.database_path)
+
+
 def create_app(
     settings: Settings | None = None, repo: Repository | None = None, clock=None
 ) -> FastAPI:
     settings = settings or load_settings()
     init_sentry(settings)
-    repo = repo or SQLiteRepository(settings.database_path)
+    repo = repo or open_repository(settings)
 
     app = FastAPI(title="SECONDO API", version="0.1.0")
     app.state.container = Container(settings, repo, clock=clock)

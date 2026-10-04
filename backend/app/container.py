@@ -9,6 +9,7 @@ from app.seed import ensure_seeded
 from app.services.demand import DemandService
 from app.services.extraction_service import ExtractionService
 from app.services.ingestion import IngestionService
+from app.services.narration import NarrationService
 from app.services.planning import PlanningService
 
 
@@ -21,6 +22,11 @@ class Container:
         self.business: Business = ensure_seeded(repo, settings)
         self._clock = clock or (lambda: datetime.now(ZoneInfo(self.business.timezone)).date())
         self.extraction = ExtractionService(settings)
+        self.narration = NarrationService(
+            settings.elevenlabs_api_key,
+            settings.elevenlabs_voice_id,
+            settings.elevenlabs_model_id,
+        )
         self.forecast_cache: dict = {}
         self.forecast_lock = threading.Lock()
 

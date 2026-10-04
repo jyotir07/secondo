@@ -23,6 +23,11 @@ class Settings:
     ollama_timeout_s: float
     forecast_provider: str
     cors_origins: list[str]
+    mongodb_uri: str | None = None
+    elevenlabs_api_key: str | None = None
+    # A premade voice used in ElevenLabs' own examples; override with any voice ID.
+    elevenlabs_voice_id: str = "JBFqnCBsd6RMkjVDRZzb"
+    elevenlabs_model_id: str = "eleven_multilingual_v2"
     sentry_dsn: str | None = None
     sentry_environment: str = "local"
     sentry_traces_sample_rate: float = 1.0
@@ -40,6 +45,10 @@ def load_settings() -> Settings:
         ollama_model=os.getenv("OLLAMA_MODEL", "gemma3:4b"),
         ollama_timeout_s=float(os.getenv("OLLAMA_TIMEOUT_S", "60")),
         forecast_provider=os.getenv("FORECAST_PROVIDER", "tabpfn"),
+        mongodb_uri=os.getenv("MONGODB_URI") or None,
+        elevenlabs_api_key=os.getenv("ELEVENLABS_API_KEY") or None,
+        elevenlabs_voice_id=os.getenv("ELEVENLABS_VOICE_ID") or "JBFqnCBsd6RMkjVDRZzb",
+        elevenlabs_model_id=os.getenv("ELEVENLABS_MODEL_ID") or "eleven_multilingual_v2",
         sentry_dsn=os.getenv("SENTRY_DSN") or None,
         sentry_environment=os.getenv("SENTRY_ENVIRONMENT", "local"),
         sentry_traces_sample_rate=float(os.getenv("SENTRY_TRACES_SAMPLE_RATE", "1.0")),

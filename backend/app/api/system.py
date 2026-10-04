@@ -75,5 +75,6 @@ def providers(c: Container = Depends(get_container)) -> dict:
             ],
         },
         "database": c.repo.describe(),
+        "narration": c.narration.status(),
         "business": {"timezone": c.business.timezone, "today": c.today()},
     }

@@ -1,0 +1,58 @@
+# Render Blueprint for the SECONDO hosted demo (sample data only).
+#
+# The free plan has 512 MB RAM, which cannot run PyTorch/TabPFN or Gemma, so the hosted API
+# forecasts with the weekday average and reads messages with the rule-based parser. Both are
+# labelled in the UI. The local setup (see README) runs the open-weight models.
+#
+# Free web services cannot receive private-network traffic, so the dashboard reaches the API at
+# its public URL (BACKEND_URL).
+
+services:
+  - type: web
+    name: secondo-api
+    runtime: python
+    plan: free
+    region: singapore
+    buildCommand: >-
+      cd backend &&
+      pip install uv &&
+      UV_PYTHON_DOWNLOADS=never uv sync --frozen --no-dev
+    startCommand: >-
+      cd backend &&
+      .venv/bin/uvicorn app.main:create_app --factory --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.11
+      - key: FORECAST_PROVIDER
+        value: weekday_average
+      - key: EXTRACTION_PROVIDER
+        value: rules
+      - key: SECONDO_BUSINESS_NAME
+        value: Neighbourhood Bakery
+      - key: SECONDO_BUSINESS_TIMEZONE
+        value: Asia/Kolkata
+      - key: SENTRY_ENVIRONMENT
+        value: render
+      # Secrets: Render asks for these when the Blueprint is first created.
+      - key: MONGODB_URI
+        sync: false
+      - key: SENTRY_DSN
+        sync: false
+      - key: ELEVENLABS_API_KEY
+        sync: false
+
+  - type: web
+    name: secondo-web
+    runtime: node
+    plan: free
+    region: singapore
+    buildCommand: cd frontend && npm ci && npm run build
+    startCommand: cd frontend && npx next start -p $PORT
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      # The API's public URL, e.g. https://secondo-api.onrender.com. Needed at build time,
+      # because Next.js compiles its /api rewrite during the build.
+      - key: BACKEND_URL
+        sync: false

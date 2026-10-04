@@ -1,9 +1,15 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, Response, status
 
 from app.api.deps import get_container
 from app.api.schemas import PlanGenerateRequest, PlanModify, PlanReview
 from app.container import Container
 from app.models import KitchenPlan
+from app.services.narration import (
+    NarrationError,
+    NarrationUnavailable,
+    PlanNotApproved,
+    briefing_text,
+)
 from app.services.planning import InvalidTransition, PlanConflict, PlanNotFound
 
 router = APIRouter(prefix="/kitchen-plans")
@@ -54,3 +60,24 @@ def reject(plan_id: str, body: PlanReview, c: Container = Depends(get_container)
 @router.post("/{plan_id}/modify")
 def modify(plan_id: str, body: PlanModify, c: Container = Depends(get_container)) -> KitchenPlan:
     return _handle(lambda: c.planning().modify(plan_id, body.quantities, body.note))
+
+
+@router.get("/{plan_id}/briefing")
+def briefing(plan_id: str, c: Container = Depends(get_container)) -> dict:
+    """The exact text a voice briefing would speak (also shown as a transcript)."""
+    plan = _handle(lambda: c.planning().get(plan_id))
+    return {"text": briefing_text(plan), "voice_available": c.narration.available}
+
+
+@router.post("/{plan_id}/briefing/audio")
+def briefing_audio(plan_id: str, c: Container = Depends(get_container)) -> Response:
+    plan = _handle(lambda: c.planning().get(plan_id))
+    try:
+        audio = c.narration.narrate(plan)
+    except NarrationUnavailable as exc:
+        raise HTTPException(status.HTTP_503_SERVICE_UNAVAILABLE, str(exc)) from exc
+    except PlanNotApproved as exc:
+        raise HTTPException(status.HTTP_409_CONFLICT, str(exc)) from exc
+    except NarrationError as exc:
+        raise HTTPException(status.HTTP_502_BAD_GATEWAY, str(exc)) from exc
+    return Response(content=audio, media_type="audio/mpeg")

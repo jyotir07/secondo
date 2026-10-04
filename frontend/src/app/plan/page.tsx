@@ -7,6 +7,7 @@ import { Badge, Button, Card, Empty, ErrorState, Field, Loading, Notice, PageHea
 import { post, type Health, type KitchenPlan, type OrderList } from "@/lib/api";
 import { PROVIDER_LABEL, formatDay, formatLongDay, formatTimestamp, num } from "@/lib/format";
 import { useApi } from "@/lib/use-api";
+import { BriefingCard } from "./briefing-card";
 
 const STATUS_TONE = { draft: "amber", modified: "amber", approved: "green", rejected: "neutral" } as const;
 const STATUS_LABEL = { draft: "Draft · needs review", modified: "Edited · needs approval", approved: "Approved", rejected: "Rejected" };
@@ -206,6 +207,8 @@ export default function PlanPage() {
                 </div>
               )}
             </Card>
+
+            {plan.status === "approved" && <BriefingCard key={plan.id} planId={plan.id} />}
 
             {plan.customer_requests.length > 0 && (
               <Card title="Customer orders in this plan" actions={<Users className="size-5 text-sage" aria-hidden />} padded={false}>

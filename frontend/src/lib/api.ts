@@ -195,6 +195,7 @@ export interface ProviderStatus {
     [key: string]: unknown;
   };
   database: { backend: string; location: string };
+  narration: { available: boolean; provider: string; voice_id: string | null; model: string | null };
   business: { timezone: string; today: string };
 }
 
