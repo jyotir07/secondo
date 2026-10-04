@@ -1,0 +1,612 @@
+date,weekday,product_id,product_name,quantity_sold,price,promotion
+2026-06-02,Tuesday,sourdough-loaf,Sourdough Loaf,13,220,0
+2026-06-02,Tuesday,butter-croissant,Butter Croissant,29,90,0
+2026-06-02,Tuesday,chocolate-chip-cookie,Chocolate Chip Cookie,35,60,0
+2026-06-02,Tuesday,cinnamon-roll,Cinnamon Roll,13,120,0
+2026-06-02,Tuesday,banana-bread,Banana Bread Loaf,6,350,0
+2026-06-02,Tuesday,chocolate-cake-1kg,Chocolate Cake (1 kg),3,900,0
+2026-06-03,Wednesday,sourdough-loaf,Sourdough Loaf,14,220,0
+2026-06-03,Wednesday,butter-croissant,Butter Croissant,24,90,0
+2026-06-03,Wednesday,chocolate-chip-cookie,Chocolate Chip Cookie,35,60,0
+2026-06-03,Wednesday,cinnamon-roll,Cinnamon Roll,25,120,0
+2026-06-03,Wednesday,banana-bread,Banana Bread Loaf,3,350,0
+2026-06-03,Wednesday,chocolate-cake-1kg,Chocolate Cake (1 kg),1,900,0
+2026-06-04,Thursday,sourdough-loaf,Sourdough Loaf,14,220,0
+2026-06-04,Thursday,butter-croissant,Butter Croissant,33,90,0
+2026-06-04,Thursday,chocolate-chip-cookie,Chocolate Chip Cookie,42,60,0
+2026-06-04,Thursday,cinnamon-roll,Cinnamon Roll,14,120,0
+2026-06-04,Thursday,banana-bread,Banana Bread Loaf,3,350,0
+2026-06-04,Thursday,chocolate-cake-1kg,Chocolate Cake (1 kg),4,900,0
+2026-06-05,Friday,sourdough-loaf,Sourdough Loaf,15,220,0
+2026-06-05,Friday,butter-croissant,Butter Croissant,24,90,0
+2026-06-05,Friday,chocolate-chip-cookie,Chocolate Chip Cookie,42,60,0
+2026-06-05,Friday,cinnamon-roll,Cinnamon Roll,20,120,0
+2026-06-05,Friday,banana-bread,Banana Bread Loaf,3,350,0
+2026-06-06,Saturday,sourdough-loaf,Sourdough Loaf,17,220,0
+2026-06-06,Saturday,butter-croissant,Butter Croissant,34,90,0
+2026-06-06,Saturday,chocolate-chip-cookie,Chocolate Chip Cookie,47,60,0
+2026-06-06,Saturday,cinnamon-roll,Cinnamon Roll,23,120,0
+2026-06-06,Saturday,banana-bread,Banana Bread Loaf,5,350,0
+2026-06-06,Saturday,chocolate-cake-1kg,Chocolate Cake (1 kg),2,900,0
+2026-06-07,Sunday,sourdough-loaf,Sourdough Loaf,16,220,0
+2026-06-07,Sunday,butter-croissant,Butter Croissant,39,90,0
+2026-06-07,Sunday,chocolate-chip-cookie,Chocolate Chip Cookie,42,60,0
+2026-06-07,Sunday,cinnamon-roll,Cinnamon Roll,18,120,0
+2026-06-07,Sunday,banana-bread,Banana Bread Loaf,10,350,0
+2026-06-07,Sunday,chocolate-cake-1kg,Chocolate Cake (1 kg),2,900,0
+2026-06-09,Tuesday,sourdough-loaf,Sourdough Loaf,11,220,0
+2026-06-09,Tuesday,butter-croissant,Butter Croissant,18,90,0
+2026-06-09,Tuesday,chocolate-chip-cookie,Chocolate Chip Cookie,29,60,0
+2026-06-09,Tuesday,cinnamon-roll,Cinnamon Roll,18,120,0
+2026-06-09,Tuesday,banana-bread,Banana Bread Loaf,2,350,0
+2026-06-09,Tuesday,chocolate-cake-1kg,Chocolate Cake (1 kg),2,900,0
+2026-06-10,Wednesday,sourdough-loaf,Sourdough Loaf,5,220,0
+2026-06-10,Wednesday,butter-croissant,Butter Croissant,22,90,0
+2026-06-10,Wednesday,chocolate-chip-cookie,Chocolate Chip Cookie,29,60,0
+2026-06-10,Wednesday,cinnamon-roll,Cinnamon Roll,11,120,0
+2026-06-10,Wednesday,banana-bread,Banana Bread Loaf,1,350,0
+2026-06-10,Wednesday,chocolate-cake-1kg,Chocolate Cake (1 kg),2,900,0
+2026-06-11,Thursday,sourdough-loaf,Sourdough Loaf,12,220,0
+2026-06-11,Thursday,butter-croissant,Butter Croissant,27,90,0
+2026-06-11,Thursday,chocolate-chip-cookie,Chocolate Chip Cookie,37,60,0
+2026-06-11,Thursday,cinnamon-roll,Cinnamon Roll,11,120,0
+2026-06-11,Thursday,banana-bread,Banana Bread Loaf,7,350,0
+2026-06-12,Friday,sourdough-loaf,Sourdough Loaf,20,220,0
+2026-06-12,Friday,butter-croissant,Butter Croissant,37,90,0
+2026-06-12,Friday,chocolate-chip-cookie,Chocolate Chip Cookie,43,60,0
+2026-06-12,Friday,cinnamon-roll,Cinnamon Roll,15,120,0
+2026-06-12,Friday,banana-bread,Banana Bread Loaf,6,350,0
+2026-06-13,Saturday,sourdough-loaf,Sourdough Loaf,19,220,0
+2026-06-13,Saturday,butter-croissant,Butter Croissant,33,90,0
+2026-06-13,Saturday,chocolate-chip-cookie,Chocolate Chip Cookie,43,60,0
+2026-06-13,Saturday,cinnamon-roll,Cinnamon Roll,19,120,0
+2026-06-13,Saturday,banana-bread,Banana Bread Loaf,9,350,0
+2026-06-14,Sunday,sourdough-loaf,Sourdough Loaf,24,220,0
+2026-06-14,Sunday,butter-croissant,Butter Croissant,32,90,0
+2026-06-14,Sunday,chocolate-chip-cookie,Chocolate Chip Cookie,63,60,0
+2026-06-14,Sunday,cinnamon-roll,Cinnamon Roll,28,120,0
+2026-06-14,Sunday,banana-bread,Banana Bread Loaf,8,350,0
+2026-06-14,Sunday,chocolate-cake-1kg,Chocolate Cake (1 kg),2,900,0
+2026-06-16,Tuesday,sourdough-loaf,Sourdough Loaf,13,220,0
+2026-06-16,Tuesday,butter-croissant,Butter Croissant,17,90,0
+2026-06-16,Tuesday,chocolate-chip-cookie,Chocolate Chip Cookie,33,60,0
+2026-06-16,Tuesday,cinnamon-roll,Cinnamon Roll,8,120,0
+2026-06-16,Tuesday,banana-bread,Banana Bread Loaf,3,350,0
+2026-06-17,Wednesday,sourdough-loaf,Sourdough Loaf,6,220,0
+2026-06-17,Wednesday,butter-croissant,Butter Croissant,17,90,0
+2026-06-17,Wednesday,chocolate-chip-cookie,Chocolate Chip Cookie,32,60,0
+2026-06-17,Wednesday,cinnamon-roll,Cinnamon Roll,11,120,0
+2026-06-17,Wednesday,banana-bread,Banana Bread Loaf,3,350,0
+2026-06-18,Thursday,sourdough-loaf,Sourdough Loaf,9,220,0
+2026-06-18,Thursday,butter-croissant,Butter Croissant,24,90,0
+2026-06-18,Thursday,chocolate-chip-cookie,Chocolate Chip Cookie,33,60,0
+2026-06-18,Thursday,cinnamon-roll,Cinnamon Roll,19,120,0
+2026-06-18,Thursday,banana-bread,Banana Bread Loaf,9,350,0
+2026-06-18,Thursday,chocolate-cake-1kg,Chocolate Cake (1 kg),1,900,0
+2026-06-19,Friday,sourdough-loaf,Sourdough Loaf,18,220,0
+2026-06-19,Friday,butter-croissant,Butter Croissant,27,90,0
+2026-06-19,Friday,chocolate-chip-cookie,Chocolate Chip Cookie,30,60,0
+2026-06-19,Friday,cinnamon-roll,Cinnamon Roll,16,120,0
+2026-06-19,Friday,banana-bread,Banana Bread Loaf,5,350,0
+2026-06-19,Friday,chocolate-cake-1kg,Chocolate Cake (1 kg),3,900,0
+2026-06-20,Saturday,sourdough-loaf,Sourdough Loaf,19,220,0
+2026-06-20,Saturday,butter-croissant,Butter Croissant,43,90,0
+2026-06-20,Saturday,chocolate-chip-cookie,Chocolate Chip Cookie,55,60,0
+2026-06-20,Saturday,cinnamon-roll,Cinnamon Roll,26,120,0
+2026-06-20,Saturday,banana-bread,Banana Bread Loaf,6,350,0
+2026-06-20,Saturday,chocolate-cake-1kg,Chocolate Cake (1 kg),1,900,0
+2026-06-21,Sunday,sourdough-loaf,Sourdough Loaf,26,220,0
+2026-06-21,Sunday,butter-croissant,Butter Croissant,37,90,0
+2026-06-21,Sunday,chocolate-chip-cookie,Chocolate Chip Cookie,61,60,0
+2026-06-21,Sunday,cinnamon-roll,Cinnamon Roll,22,120,0
+2026-06-21,Sunday,banana-bread,Banana Bread Loaf,11,350,0
+2026-06-23,Tuesday,sourdough-loaf,Sourdough Loaf,11,220,0
+2026-06-23,Tuesday,butter-croissant,Butter Croissant,16,90,0
+2026-06-23,Tuesday,chocolate-chip-cookie,Chocolate Chip Cookie,26,60,0
+2026-06-23,Tuesday,cinnamon-roll,Cinnamon Roll,15,120,0
+2026-06-23,Tuesday,banana-bread,Banana Bread Loaf,6,350,0
+2026-06-24,Wednesday,sourdough-loaf,Sourdough Loaf,11,220,0
+2026-06-24,Wednesday,butter-croissant,Butter Croissant,28,90,0
+2026-06-24,Wednesday,chocolate-chip-cookie,Chocolate Chip Cookie,29,60,0
+2026-06-24,Wednesday,cinnamon-roll,Cinnamon Roll,19,120,0
+2026-06-24,Wednesday,banana-bread,Banana Bread Loaf,5,350,0
+2026-06-24,Wednesday,chocolate-cake-1kg,Chocolate Cake (1 kg),3,900,0
+2026-06-25,Thursday,sourdough-loaf,Sourdough Loaf,17,220,0
+2026-06-25,Thursday,butter-croissant,Butter Croissant,21,90,0
+2026-06-25,Thursday,chocolate-chip-cookie,Chocolate Chip Cookie,36,60,0
+2026-06-25,Thursday,cinnamon-roll,Cinnamon Roll,16,120,0
+2026-06-25,Thursday,banana-bread,Banana Bread Loaf,5,350,0
+2026-06-25,Thursday,chocolate-cake-1kg,Chocolate Cake (1 kg),2,900,0
+2026-06-26,Friday,sourdough-loaf,Sourdough Loaf,10,220,0
+2026-06-26,Friday,butter-croissant,Butter Croissant,29,90,0
+2026-06-26,Friday,chocolate-chip-cookie,Chocolate Chip Cookie,46,60,0
+2026-06-26,Friday,cinnamon-roll,Cinnamon Roll,20,120,0
+2026-06-26,Friday,banana-bread,Banana Bread Loaf,6,350,0
+2026-06-26,Friday,chocolate-cake-1kg,Chocolate Cake (1 kg),2,900,0
+2026-06-27,Saturday,sourdough-loaf,Sourdough Loaf,11,220,0
+2026-06-27,Saturday,butter-croissant,Butter Croissant,46,90,0
+2026-06-27,Saturday,chocolate-chip-cookie,Chocolate Chip Cookie,48,60,0
+2026-06-27,Saturday,cinnamon-roll,Cinnamon Roll,26,120,0
+2026-06-27,Saturday,banana-bread,Banana Bread Loaf,6,350,0
+2026-06-27,Saturday,chocolate-cake-1kg,Chocolate Cake (1 kg),1,900,0
+2026-06-28,Sunday,sourdough-loaf,Sourdough Loaf,16,220,0
+2026-06-28,Sunday,butter-croissant,Butter Croissant,38,90,0
+2026-06-28,Sunday,chocolate-chip-cookie,Chocolate Chip Cookie,41,60,0
+2026-06-28,Sunday,cinnamon-roll,Cinnamon Roll,18,120,0
+2026-06-28,Sunday,banana-bread,Banana Bread Loaf,10,350,0
+2026-06-28,Sunday,chocolate-cake-1kg,Chocolate Cake (1 kg),2,900,0
+2026-06-30,Tuesday,sourdough-loaf,Sourdough Loaf,13,220,0
+2026-06-30,Tuesday,butter-croissant,Butter Croissant,18,90,0
+2026-06-30,Tuesday,chocolate-chip-cookie,Chocolate Chip Cookie,25,60,0
+2026-06-30,Tuesday,cinnamon-roll,Cinnamon Roll,17,120,0
+2026-06-30,Tuesday,banana-bread,Banana Bread Loaf,2,350,0
+2026-07-01,Wednesday,sourdough-loaf,Sourdough Loaf,14,220,0
+2026-07-01,Wednesday,butter-croissant,Butter Croissant,28,90,0
+2026-07-01,Wednesday,chocolate-chip-cookie,Chocolate Chip Cookie,35,60,0
+2026-07-01,Wednesday,cinnamon-roll,Cinnamon Roll,11,120,0
+2026-07-01,Wednesday,banana-bread,Banana Bread Loaf,7,350,0
+2026-07-01,Wednesday,chocolate-cake-1kg,Chocolate Cake (1 kg),1,900,0
+2026-07-02,Thursday,sourdough-loaf,Sourdough Loaf,7,220,0
+2026-07-02,Thursday,butter-croissant,Butter Croissant,27,90,0
+2026-07-02,Thursday,chocolate-chip-cookie,Chocolate Chip Cookie,22,60,0
+2026-07-02,Thursday,cinnamon-roll,Cinnamon Roll,13,120,0
+2026-07-02,Thursday,banana-bread,Banana Bread Loaf,5,350,0
+2026-07-02,Thursday,chocolate-cake-1kg,Chocolate Cake (1 kg),3,900,0
+2026-07-03,Friday,sourdough-loaf,Sourdough Loaf,13,220,0
+2026-07-03,Friday,butter-croissant,Butter Croissant,30,90,0
+2026-07-03,Friday,chocolate-chip-cookie,Chocolate Chip Cookie,42,60,0
+2026-07-03,Friday,cinnamon-roll,Cinnamon Roll,20,120,0
+2026-07-03,Friday,banana-bread,Banana Bread Loaf,7,350,0
+2026-07-03,Friday,chocolate-cake-1kg,Chocolate Cake (1 kg),1,900,0
+2026-07-04,Saturday,sourdough-loaf,Sourdough Loaf,20,220,0
+2026-07-04,Saturday,butter-croissant,Butter Croissant,46,90,0
+2026-07-04,Saturday,chocolate-chip-cookie,Chocolate Chip Cookie,62,60,0
+2026-07-04,Saturday,cinnamon-roll,Cinnamon Roll,25,120,0
+2026-07-04,Saturday,banana-bread,Banana Bread Loaf,16,350,0
+2026-07-05,Sunday,sourdough-loaf,Sourdough Loaf,22,220,0
+2026-07-05,Sunday,butter-croissant,Butter Croissant,46,90,0
+2026-07-05,Sunday,chocolate-chip-cookie,Chocolate Chip Cookie,60,60,0
+2026-07-05,Sunday,cinnamon-roll,Cinnamon Roll,21,120,0
+2026-07-05,Sunday,banana-bread,Banana Bread Loaf,8,350,0
+2026-07-05,Sunday,chocolate-cake-1kg,Chocolate Cake (1 kg),2,900,0
+2026-07-07,Tuesday,sourdough-loaf,Sourdough Loaf,10,220,0
+2026-07-07,Tuesday,butter-croissant,Butter Croissant,23,90,0
+2026-07-07,Tuesday,chocolate-chip-cookie,Chocolate Chip Cookie,36,60,0
+2026-07-07,Tuesday,cinnamon-roll,Cinnamon Roll,6,120,0
+2026-07-07,Tuesday,banana-bread,Banana Bread Loaf,5,350,0
+2026-07-07,Tuesday,chocolate-cake-1kg,Chocolate Cake (1 kg),3,900,0
+2026-07-08,Wednesday,sourdough-loaf,Sourdough Loaf,10,220,0
+2026-07-08,Wednesday,butter-croissant,Butter Croissant,21,90,0
+2026-07-08,Wednesday,chocolate-chip-cookie,Chocolate Chip Cookie,32,60,0
+2026-07-08,Wednesday,cinnamon-roll,Cinnamon Roll,16,120,0
+2026-07-08,Wednesday,banana-bread,Banana Bread Loaf,5,350,0
+2026-07-08,Wednesday,chocolate-cake-1kg,Chocolate Cake (1 kg),2,900,0
+2026-07-09,Thursday,sourdough-loaf,Sourdough Loaf,10,220,0
+2026-07-09,Thursday,butter-croissant,Butter Croissant,23,90,0
+2026-07-09,Thursday,chocolate-chip-cookie,Chocolate Chip Cookie,30,60,0
+2026-07-09,Thursday,cinnamon-roll,Cinnamon Roll,18,120,0
+2026-07-09,Thursday,banana-bread,Banana Bread Loaf,9,350,0
+2026-07-09,Thursday,chocolate-cake-1kg,Chocolate Cake (1 kg),3,900,0
+2026-07-10,Friday,sourdough-loaf,Sourdough Loaf,8,220,0
+2026-07-10,Friday,butter-croissant,Butter Croissant,25,90,0
+2026-07-10,Friday,chocolate-chip-cookie,Chocolate Chip Cookie,39,60,0
+2026-07-10,Friday,cinnamon-roll,Cinnamon Roll,8,120,0
+2026-07-10,Friday,banana-bread,Banana Bread Loaf,4,350,0
+2026-07-10,Friday,chocolate-cake-1kg,Chocolate Cake (1 kg),1,900,0
+2026-07-11,Saturday,sourdough-loaf,Sourdough Loaf,24,220,0
+2026-07-11,Saturday,butter-croissant,Butter Croissant,41,90,0
+2026-07-11,Saturday,chocolate-chip-cookie,Chocolate Chip Cookie,51,60,0
+2026-07-11,Saturday,cinnamon-roll,Cinnamon Roll,29,120,0
+2026-07-11,Saturday,banana-bread,Banana Bread Loaf,7,350,0
+2026-07-11,Saturday,chocolate-cake-1kg,Chocolate Cake (1 kg),2,900,0
+2026-07-12,Sunday,sourdough-loaf,Sourdough Loaf,7,220,0
+2026-07-12,Sunday,butter-croissant,Butter Croissant,47,90,0
+2026-07-12,Sunday,chocolate-chip-cookie,Chocolate Chip Cookie,27,60,0
+2026-07-12,Sunday,cinnamon-roll,Cinnamon Roll,23,120,0
+2026-07-12,Sunday,banana-bread,Banana Bread Loaf,5,350,0
+2026-07-14,Tuesday,sourdough-loaf,Sourdough Loaf,15,220,0
+2026-07-14,Tuesday,butter-croissant,Butter Croissant,25,90,0
+2026-07-14,Tuesday,chocolate-chip-cookie,Chocolate Chip Cookie,25,60,0
+2026-07-14,Tuesday,cinnamon-roll,Cinnamon Roll,13,120,0
+2026-07-14,Tuesday,banana-bread,Banana Bread Loaf,3,350,0
+2026-07-14,Tuesday,chocolate-cake-1kg,Chocolate Cake (1 kg),1,900,0
+2026-07-15,Wednesday,sourdough-loaf,Sourdough Loaf,11,220,0
+2026-07-15,Wednesday,butter-croissant,Butter Croissant,23,90,0
+2026-07-15,Wednesday,chocolate-chip-cookie,Chocolate Chip Cookie,18,60,0
+2026-07-15,Wednesday,cinnamon-roll,Cinnamon Roll,11,120,0
+2026-07-15,Wednesday,banana-bread,Banana Bread Loaf,2,350,0
+2026-07-16,Thursday,sourdough-loaf,Sourdough Loaf,17,220,0
+2026-07-16,Thursday,butter-croissant,Butter Croissant,27,90,0
+2026-07-16,Thursday,chocolate-chip-cookie,Chocolate Chip Cookie,37,60,0
+2026-07-16,Thursday,cinnamon-roll,Cinnamon Roll,16,120,0
+2026-07-16,Thursday,banana-bread,Banana Bread Loaf,3,350,0
+2026-07-16,Thursday,chocolate-cake-1kg,Chocolate Cake (1 kg),2,900,0
+2026-07-17,Friday,sourdough-loaf,Sourdough Loaf,13,220,0
+2026-07-17,Friday,butter-croissant,Butter Croissant,24,90,0
+2026-07-17,Friday,chocolate-chip-cookie,Chocolate Chip Cookie,49,60,0
+2026-07-17,Friday,cinnamon-roll,Cinnamon Roll,17,120,0
+2026-07-17,Friday,banana-bread,Banana Bread Loaf,10,350,0
+2026-07-18,Saturday,sourdough-loaf,Sourdough Loaf,15,220,0
+2026-07-18,Saturday,butter-croissant,Butter Croissant,38,90,0
+2026-07-18,Saturday,chocolate-chip-cookie,Chocolate Chip Cookie,51,60,0
+2026-07-18,Saturday,cinnamon-roll,Cinnamon Roll,25,120,0
+2026-07-18,Saturday,banana-bread,Banana Bread Loaf,8,350,0
+2026-07-18,Saturday,chocolate-cake-1kg,Chocolate Cake (1 kg),3,900,0
+2026-07-19,Sunday,sourdough-loaf,Sourdough Loaf,11,220,0
+2026-07-19,Sunday,butter-croissant,Butter Croissant,45,90,0
+2026-07-19,Sunday,chocolate-chip-cookie,Chocolate Chip Cookie,41,60,0
+2026-07-19,Sunday,cinnamon-roll,Cinnamon Roll,21,120,0
+2026-07-19,Sunday,banana-bread,Banana Bread Loaf,5,350,0
+2026-07-19,Sunday,chocolate-cake-1kg,Chocolate Cake (1 kg),1,900,0
+2026-07-21,Tuesday,sourdough-loaf,Sourdough Loaf,4,220,0
+2026-07-21,Tuesday,butter-croissant,Butter Croissant,19,90,0
+2026-07-21,Tuesday,chocolate-chip-cookie,Chocolate Chip Cookie,35,60,0
+2026-07-21,Tuesday,cinnamon-roll,Cinnamon Roll,13,120,0
+2026-07-21,Tuesday,banana-bread,Banana Bread Loaf,4,350,0
+2026-07-22,Wednesday,sourdough-loaf,Sourdough Loaf,9,220,0
+2026-07-22,Wednesday,butter-croissant,Butter Croissant,27,90,0
+2026-07-22,Wednesday,chocolate-chip-cookie,Chocolate Chip Cookie,41,60,0
+2026-07-22,Wednesday,cinnamon-roll,Cinnamon Roll,19,120,0
+2026-07-22,Wednesday,banana-bread,Banana Bread Loaf,4,350,0
+2026-07-23,Thursday,sourdough-loaf,Sourdough Loaf,17,220,0
+2026-07-23,Thursday,butter-croissant,Butter Croissant,26,90,0
+2026-07-23,Thursday,chocolate-chip-cookie,Chocolate Chip Cookie,42,60,0
+2026-07-23,Thursday,cinnamon-roll,Cinnamon Roll,15,120,0
+2026-07-23,Thursday,banana-bread,Banana Bread Loaf,4,350,0
+2026-07-23,Thursday,chocolate-cake-1kg,Chocolate Cake (1 kg),3,900,0
+2026-07-24,Friday,sourdough-loaf,Sourdough Loaf,14,220,0
+2026-07-24,Friday,butter-croissant,Butter Croissant,26,90,0
+2026-07-24,Friday,chocolate-chip-cookie,Chocolate Chip Cookie,50,60,0
+2026-07-24,Friday,cinnamon-roll,Cinnamon Roll,19,120,0
+2026-07-24,Friday,banana-bread,Banana Bread Loaf,7,350,0
+2026-07-24,Friday,chocolate-cake-1kg,Chocolate Cake (1 kg),2,900,0
+2026-07-25,Saturday,sourdough-loaf,Sourdough Loaf,17,220,0
+2026-07-25,Saturday,butter-croissant,Butter Croissant,43,90,0
+2026-07-25,Saturday,chocolate-chip-cookie,Chocolate Chip Cookie,52,60,0
+2026-07-25,Saturday,cinnamon-roll,Cinnamon Roll,20,120,0
+2026-07-25,Saturday,banana-bread,Banana Bread Loaf,8,350,0
+2026-07-25,Saturday,chocolate-cake-1kg,Chocolate Cake (1 kg),4,900,0
+2026-07-26,Sunday,sourdough-loaf,Sourdough Loaf,12,220,0
+2026-07-26,Sunday,butter-croissant,Butter Croissant,44,90,0
+2026-07-26,Sunday,chocolate-chip-cookie,Chocolate Chip Cookie,58,60,0
+2026-07-26,Sunday,cinnamon-roll,Cinnamon Roll,24,120,0
+2026-07-26,Sunday,banana-bread,Banana Bread Loaf,11,350,0
+2026-07-26,Sunday,chocolate-cake-1kg,Chocolate Cake (1 kg),1,900,0
+2026-07-28,Tuesday,sourdough-loaf,Sourdough Loaf,5,220,0
+2026-07-28,Tuesday,butter-croissant,Butter Croissant,24,90,0
+2026-07-28,Tuesday,chocolate-chip-cookie,Chocolate Chip Cookie,37,60,1
+2026-07-28,Tuesday,cinnamon-roll,Cinnamon Roll,10,120,0
+2026-07-28,Tuesday,banana-bread,Banana Bread Loaf,2,350,0
+2026-07-29,Wednesday,sourdough-loaf,Sourdough Loaf,7,220,0
+2026-07-29,Wednesday,butter-croissant,Butter Croissant,25,90,0
+2026-07-29,Wednesday,chocolate-chip-cookie,Chocolate Chip Cookie,29,60,0
+2026-07-29,Wednesday,cinnamon-roll,Cinnamon Roll,18,120,0
+2026-07-29,Wednesday,banana-bread,Banana Bread Loaf,7,350,0
+2026-07-30,Thursday,sourdough-loaf,Sourdough Loaf,15,220,0
+2026-07-30,Thursday,butter-croissant,Butter Croissant,25,90,0
+2026-07-30,Thursday,chocolate-chip-cookie,Chocolate Chip Cookie,30,60,0
+2026-07-30,Thursday,cinnamon-roll,Cinnamon Roll,16,120,0
+2026-07-30,Thursday,banana-bread,Banana Bread Loaf,4,350,0
+2026-07-30,Thursday,chocolate-cake-1kg,Chocolate Cake (1 kg),1,900,0
+2026-07-31,Friday,sourdough-loaf,Sourdough Loaf,18,220,0
+2026-07-31,Friday,butter-croissant,Butter Croissant,35,90,0
+2026-07-31,Friday,chocolate-chip-cookie,Chocolate Chip Cookie,32,60,0
+2026-07-31,Friday,cinnamon-roll,Cinnamon Roll,34,120,0
+2026-07-31,Friday,banana-bread,Banana Bread Loaf,5,350,0
+2026-07-31,Friday,chocolate-cake-1kg,Chocolate Cake (1 kg),1,900,0
+2026-08-01,Saturday,sourdough-loaf,Sourdough Loaf,20,220,0
+2026-08-01,Saturday,butter-croissant,Butter Croissant,45,90,0
+2026-08-01,Saturday,chocolate-chip-cookie,Chocolate Chip Cookie,60,60,0
+2026-08-01,Saturday,cinnamon-roll,Cinnamon Roll,23,120,0
+2026-08-01,Saturday,banana-bread,Banana Bread Loaf,11,350,0
+2026-08-01,Saturday,chocolate-cake-1kg,Chocolate Cake (1 kg),2,900,0
+2026-08-02,Sunday,sourdough-loaf,Sourdough Loaf,12,220,0
+2026-08-02,Sunday,butter-croissant,Butter Croissant,41,90,0
+2026-08-02,Sunday,chocolate-chip-cookie,Chocolate Chip Cookie,82,60,1
+2026-08-02,Sunday,cinnamon-roll,Cinnamon Roll,26,120,0
+2026-08-02,Sunday,banana-bread,Banana Bread Loaf,7,350,0
+2026-08-02,Sunday,chocolate-cake-1kg,Chocolate Cake (1 kg),2,900,0
+2026-08-04,Tuesday,sourdough-loaf,Sourdough Loaf,11,220,0
+2026-08-04,Tuesday,butter-croissant,Butter Croissant,24,90,0
+2026-08-04,Tuesday,chocolate-chip-cookie,Chocolate Chip Cookie,26,60,0
+2026-08-04,Tuesday,cinnamon-roll,Cinnamon Roll,9,120,0
+2026-08-04,Tuesday,banana-bread,Banana Bread Loaf,5,350,0
+2026-08-04,Tuesday,chocolate-cake-1kg,Chocolate Cake (1 kg),1,900,0
+2026-08-05,Wednesday,sourdough-loaf,Sourdough Loaf,11,220,0
+2026-08-05,Wednesday,butter-croissant,Butter Croissant,21,90,0
+2026-08-05,Wednesday,chocolate-chip-cookie,Chocolate Chip Cookie,30,60,0
+2026-08-05,Wednesday,cinnamon-roll,Cinnamon Roll,16,120,0
+2026-08-05,Wednesday,banana-bread,Banana Bread Loaf,3,350,0
+2026-08-05,Wednesday,chocolate-cake-1kg,Chocolate Cake (1 kg),1,900,0
+2026-08-06,Thursday,sourdough-loaf,Sourdough Loaf,9,220,0
+2026-08-06,Thursday,butter-croissant,Butter Croissant,30,90,0
+2026-08-06,Thursday,chocolate-chip-cookie,Chocolate Chip Cookie,32,60,0
+2026-08-06,Thursday,cinnamon-roll,Cinnamon Roll,15,120,0
+2026-08-06,Thursday,banana-bread,Banana Bread Loaf,3,350,0
+2026-08-07,Friday,sourdough-loaf,Sourdough Loaf,14,220,0
+2026-08-07,Friday,butter-croissant,Butter Croissant,41,90,0
+2026-08-07,Friday,chocolate-chip-cookie,Chocolate Chip Cookie,41,60,0
+2026-08-07,Friday,cinnamon-roll,Cinnamon Roll,20,120,0
+2026-08-07,Friday,banana-bread,Banana Bread Loaf,3,350,0
+2026-08-08,Saturday,sourdough-loaf,Sourdough Loaf,25,220,0
+2026-08-08,Saturday,butter-croissant,Butter Croissant,39,90,0
+2026-08-08,Saturday,chocolate-chip-cookie,Chocolate Chip Cookie,49,60,0
+2026-08-08,Saturday,cinnamon-roll,Cinnamon Roll,33,120,0
+2026-08-08,Saturday,banana-bread,Banana Bread Loaf,7,350,0
+2026-08-08,Saturday,chocolate-cake-1kg,Chocolate Cake (1 kg),1,900,0
+2026-08-09,Sunday,sourdough-loaf,Sourdough Loaf,16,220,0
+2026-08-09,Sunday,butter-croissant,Butter Croissant,51,90,0
+2026-08-09,Sunday,chocolate-chip-cookie,Chocolate Chip Cookie,49,60,0
+2026-08-09,Sunday,cinnamon-roll,Cinnamon Roll,20,120,0
+2026-08-09,Sunday,banana-bread,Banana Bread Loaf,4,350,0
+2026-08-09,Sunday,chocolate-cake-1kg,Chocolate Cake (1 kg),2,900,0
+2026-08-11,Tuesday,sourdough-loaf,Sourdough Loaf,10,220,0
+2026-08-11,Tuesday,butter-croissant,Butter Croissant,21,90,0
+2026-08-11,Tuesday,chocolate-chip-cookie,Chocolate Chip Cookie,30,60,0
+2026-08-11,Tuesday,cinnamon-roll,Cinnamon Roll,15,120,0
+2026-08-11,Tuesday,banana-bread,Banana Bread Loaf,3,350,0
+2026-08-12,Wednesday,sourdough-loaf,Sourdough Loaf,13,220,0
+2026-08-12,Wednesday,butter-croissant,Butter Croissant,19,90,0
+2026-08-12,Wednesday,chocolate-chip-cookie,Chocolate Chip Cookie,27,60,0
+2026-08-12,Wednesday,cinnamon-roll,Cinnamon Roll,20,120,0
+2026-08-12,Wednesday,banana-bread,Banana Bread Loaf,5,350,0
+2026-08-13,Thursday,sourdough-loaf,Sourdough Loaf,13,220,0
+2026-08-13,Thursday,butter-croissant,Butter Croissant,30,90,0
+2026-08-13,Thursday,chocolate-chip-cookie,Chocolate Chip Cookie,34,60,0
+2026-08-13,Thursday,cinnamon-roll,Cinnamon Roll,19,120,0
+2026-08-13,Thursday,banana-bread,Banana Bread Loaf,6,350,0
+2026-08-13,Thursday,chocolate-cake-1kg,Chocolate Cake (1 kg),4,900,0
+2026-08-14,Friday,sourdough-loaf,Sourdough Loaf,15,220,0
+2026-08-14,Friday,butter-croissant,Butter Croissant,28,90,0
+2026-08-14,Friday,chocolate-chip-cookie,Chocolate Chip Cookie,40,60,0
+2026-08-14,Friday,cinnamon-roll,Cinnamon Roll,17,120,0
+2026-08-14,Friday,banana-bread,Banana Bread Loaf,6,350,0
+2026-08-15,Saturday,sourdough-loaf,Sourdough Loaf,19,220,0
+2026-08-15,Saturday,butter-croissant,Butter Croissant,45,90,0
+2026-08-15,Saturday,chocolate-chip-cookie,Chocolate Chip Cookie,52,60,0
+2026-08-15,Saturday,cinnamon-roll,Cinnamon Roll,24,120,0
+2026-08-15,Saturday,banana-bread,Banana Bread Loaf,6,350,0
+2026-08-15,Saturday,chocolate-cake-1kg,Chocolate Cake (1 kg),1,900,0
+2026-08-16,Sunday,sourdough-loaf,Sourdough Loaf,19,220,0
+2026-08-16,Sunday,butter-croissant,Butter Croissant,40,90,0
+2026-08-16,Sunday,chocolate-chip-cookie,Chocolate Chip Cookie,45,60,0
+2026-08-16,Sunday,cinnamon-roll,Cinnamon Roll,27,120,0
+2026-08-16,Sunday,banana-bread,Banana Bread Loaf,7,350,0
+2026-08-18,Tuesday,sourdough-loaf,Sourdough Loaf,19,220,0
+2026-08-18,Tuesday,butter-croissant,Butter Croissant,17,90,0
+2026-08-18,Tuesday,chocolate-chip-cookie,Chocolate Chip Cookie,21,60,0
+2026-08-18,Tuesday,cinnamon-roll,Cinnamon Roll,20,120,0
+2026-08-18,Tuesday,banana-bread,Banana Bread Loaf,8,350,0
+2026-08-18,Tuesday,chocolate-cake-1kg,Chocolate Cake (1 kg),1,900,0
+2026-08-19,Wednesday,sourdough-loaf,Sourdough Loaf,6,220,0
+2026-08-19,Wednesday,butter-croissant,Butter Croissant,28,90,0
+2026-08-19,Wednesday,chocolate-chip-cookie,Chocolate Chip Cookie,33,60,0
+2026-08-19,Wednesday,cinnamon-roll,Cinnamon Roll,9,120,0
+2026-08-19,Wednesday,banana-bread,Banana Bread Loaf,6,350,0
+2026-08-20,Thursday,sourdough-loaf,Sourdough Loaf,5,220,0
+2026-08-20,Thursday,butter-croissant,Butter Croissant,28,90,0
+2026-08-20,Thursday,chocolate-chip-cookie,Chocolate Chip Cookie,37,60,0
+2026-08-20,Thursday,cinnamon-roll,Cinnamon Roll,19,120,0
+2026-08-20,Thursday,banana-bread,Banana Bread Loaf,4,350,0
+2026-08-20,Thursday,chocolate-cake-1kg,Chocolate Cake (1 kg),2,900,0
+2026-08-21,Friday,sourdough-loaf,Sourdough Loaf,17,220,0
+2026-08-21,Friday,butter-croissant,Butter Croissant,25,90,0
+2026-08-21,Friday,chocolate-chip-cookie,Chocolate Chip Cookie,44,60,0
+2026-08-21,Friday,cinnamon-roll,Cinnamon Roll,14,120,0
+2026-08-21,Friday,banana-bread,Banana Bread Loaf,4,350,0
+2026-08-21,Friday,chocolate-cake-1kg,Chocolate Cake (1 kg),2,900,0
+2026-08-22,Saturday,sourdough-loaf,Sourdough Loaf,19,220,0
+2026-08-22,Saturday,butter-croissant,Butter Croissant,30,90,0
+2026-08-22,Saturday,chocolate-chip-cookie,Chocolate Chip Cookie,58,60,0
+2026-08-22,Saturday,cinnamon-roll,Cinnamon Roll,32,120,0
+2026-08-22,Saturday,banana-bread,Banana Bread Loaf,12,350,0
+2026-08-22,Saturday,chocolate-cake-1kg,Chocolate Cake (1 kg),3,900,0
+2026-08-23,Sunday,sourdough-loaf,Sourdough Loaf,17,220,0
+2026-08-23,Sunday,butter-croissant,Butter Croissant,43,90,0
+2026-08-23,Sunday,chocolate-chip-cookie,Chocolate Chip Cookie,52,60,0
+2026-08-23,Sunday,cinnamon-roll,Cinnamon Roll,29,120,0
+2026-08-23,Sunday,banana-bread,Banana Bread Loaf,5,350,0
+2026-08-23,Sunday,chocolate-cake-1kg,Chocolate Cake (1 kg),3,900,0
+2026-08-25,Tuesday,sourdough-loaf,Sourdough Loaf,9,220,0
+2026-08-25,Tuesday,butter-croissant,Butter Croissant,17,90,0
+2026-08-25,Tuesday,chocolate-chip-cookie,Chocolate Chip Cookie,22,60,0
+2026-08-25,Tuesday,cinnamon-roll,Cinnamon Roll,15,120,0
+2026-08-25,Tuesday,banana-bread,Banana Bread Loaf,7,350,0
+2026-08-26,Wednesday,sourdough-loaf,Sourdough Loaf,11,220,0
+2026-08-26,Wednesday,butter-croissant,Butter Croissant,20,90,0
+2026-08-26,Wednesday,chocolate-chip-cookie,Chocolate Chip Cookie,27,60,0
+2026-08-26,Wednesday,cinnamon-roll,Cinnamon Roll,13,120,0
+2026-08-26,Wednesday,banana-bread,Banana Bread Loaf,9,350,0
+2026-08-26,Wednesday,chocolate-cake-1kg,Chocolate Cake (1 kg),3,900,0
+2026-08-27,Thursday,sourdough-loaf,Sourdough Loaf,12,220,0
+2026-08-27,Thursday,butter-croissant,Butter Croissant,28,90,0
+2026-08-27,Thursday,chocolate-chip-cookie,Chocolate Chip Cookie,26,60,0
+2026-08-27,Thursday,cinnamon-roll,Cinnamon Roll,21,120,0
+2026-08-27,Thursday,banana-bread,Banana Bread Loaf,6,350,0
+2026-08-28,Friday,sourdough-loaf,Sourdough Loaf,10,220,0
+2026-08-28,Friday,butter-croissant,Butter Croissant,43,90,0
+2026-08-28,Friday,chocolate-chip-cookie,Chocolate Chip Cookie,44,60,0
+2026-08-28,Friday,cinnamon-roll,Cinnamon Roll,15,120,0
+2026-08-28,Friday,banana-bread,Banana Bread Loaf,6,350,0
+2026-08-28,Friday,chocolate-cake-1kg,Chocolate Cake (1 kg),1,900,0
+2026-08-29,Saturday,sourdough-loaf,Sourdough Loaf,16,220,0
+2026-08-29,Saturday,butter-croissant,Butter Croissant,48,90,0
+2026-08-29,Saturday,chocolate-chip-cookie,Chocolate Chip Cookie,48,60,0
+2026-08-29,Saturday,cinnamon-roll,Cinnamon Roll,12,120,0
+2026-08-29,Saturday,banana-bread,Banana Bread Loaf,7,350,0
+2026-08-29,Saturday,chocolate-cake-1kg,Chocolate Cake (1 kg),3,900,0
+2026-08-30,Sunday,sourdough-loaf,Sourdough Loaf,16,220,0
+2026-08-30,Sunday,butter-croissant,Butter Croissant,49,90,0
+2026-08-30,Sunday,chocolate-chip-cookie,Chocolate Chip Cookie,55,60,0
+2026-08-30,Sunday,cinnamon-roll,Cinnamon Roll,21,120,0
+2026-08-30,Sunday,banana-bread,Banana Bread Loaf,8,350,0
+2026-09-01,Tuesday,sourdough-loaf,Sourdough Loaf,18,220,0
+2026-09-01,Tuesday,butter-croissant,Butter Croissant,23,90,0
+2026-09-01,Tuesday,chocolate-chip-cookie,Chocolate Chip Cookie,35,60,0
+2026-09-01,Tuesday,cinnamon-roll,Cinnamon Roll,11,120,0
+2026-09-01,Tuesday,banana-bread,Banana Bread Loaf,8,350,0
+2026-09-01,Tuesday,chocolate-cake-1kg,Chocolate Cake (1 kg),3,900,0
+2026-09-02,Wednesday,sourdough-loaf,Sourdough Loaf,15,220,0
+2026-09-02,Wednesday,butter-croissant,Butter Croissant,19,90,0
+2026-09-02,Wednesday,chocolate-chip-cookie,Chocolate Chip Cookie,35,60,0
+2026-09-02,Wednesday,cinnamon-roll,Cinnamon Roll,14,120,0
+2026-09-02,Wednesday,banana-bread,Banana Bread Loaf,8,350,0
+2026-09-02,Wednesday,chocolate-cake-1kg,Chocolate Cake (1 kg),3,900,0
+2026-09-03,Thursday,sourdough-loaf,Sourdough Loaf,8,220,0
+2026-09-03,Thursday,butter-croissant,Butter Croissant,37,90,0
+2026-09-03,Thursday,chocolate-chip-cookie,Chocolate Chip Cookie,37,60,0
+2026-09-03,Thursday,cinnamon-roll,Cinnamon Roll,23,120,0
+2026-09-03,Thursday,banana-bread,Banana Bread Loaf,5,350,0
+2026-09-04,Friday,sourdough-loaf,Sourdough Loaf,18,220,0
+2026-09-04,Friday,butter-croissant,Butter Croissant,34,90,0
+2026-09-04,Friday,chocolate-chip-cookie,Chocolate Chip Cookie,53,60,0
+2026-09-04,Friday,cinnamon-roll,Cinnamon Roll,16,120,0
+2026-09-04,Friday,banana-bread,Banana Bread Loaf,3,350,0
+2026-09-04,Friday,chocolate-cake-1kg,Chocolate Cake (1 kg),4,900,0
+2026-09-05,Saturday,sourdough-loaf,Sourdough Loaf,21,220,0
+2026-09-05,Saturday,butter-croissant,Butter Croissant,50,90,0
+2026-09-05,Saturday,chocolate-chip-cookie,Chocolate Chip Cookie,69,60,0
+2026-09-05,Saturday,cinnamon-roll,Cinnamon Roll,28,120,0
+2026-09-05,Saturday,banana-bread,Banana Bread Loaf,7,350,0
+2026-09-06,Sunday,sourdough-loaf,Sourdough Loaf,19,220,0
+2026-09-06,Sunday,butter-croissant,Butter Croissant,41,90,0
+2026-09-06,Sunday,chocolate-chip-cookie,Chocolate Chip Cookie,51,60,0
+2026-09-06,Sunday,cinnamon-roll,Cinnamon Roll,21,120,0
+2026-09-06,Sunday,banana-bread,Banana Bread Loaf,6,350,0
+2026-09-06,Sunday,chocolate-cake-1kg,Chocolate Cake (1 kg),3,900,0
+2026-09-08,Tuesday,sourdough-loaf,Sourdough Loaf,13,220,0
+2026-09-08,Tuesday,butter-croissant,Butter Croissant,18,90,0
+2026-09-08,Tuesday,chocolate-chip-cookie,Chocolate Chip Cookie,26,60,0
+2026-09-08,Tuesday,cinnamon-roll,Cinnamon Roll,11,120,0
+2026-09-08,Tuesday,banana-bread,Banana Bread Loaf,6,350,0
+2026-09-09,Wednesday,sourdough-loaf,Sourdough Loaf,11,220,0
+2026-09-09,Wednesday,butter-croissant,Butter Croissant,16,90,0
+2026-09-09,Wednesday,chocolate-chip-cookie,Chocolate Chip Cookie,36,60,0
+2026-09-09,Wednesday,cinnamon-roll,Cinnamon Roll,18,120,0
+2026-09-09,Wednesday,banana-bread,Banana Bread Loaf,9,350,0
+2026-09-09,Wednesday,chocolate-cake-1kg,Chocolate Cake (1 kg),1,900,0
+2026-09-10,Thursday,sourdough-loaf,Sourdough Loaf,19,220,0
+2026-09-10,Thursday,butter-croissant,Butter Croissant,26,90,0
+2026-09-10,Thursday,chocolate-chip-cookie,Chocolate Chip Cookie,26,60,0
+2026-09-10,Thursday,cinnamon-roll,Cinnamon Roll,15,120,0
+2026-09-10,Thursday,banana-bread,Banana Bread Loaf,3,350,0
+2026-09-10,Thursday,chocolate-cake-1kg,Chocolate Cake (1 kg),1,900,0
+2026-09-11,Friday,sourdough-loaf,Sourdough Loaf,16,220,0
+2026-09-11,Friday,butter-croissant,Butter Croissant,34,90,0
+2026-09-11,Friday,chocolate-chip-cookie,Chocolate Chip Cookie,36,60,0
+2026-09-11,Friday,cinnamon-roll,Cinnamon Roll,18,120,0
+2026-09-11,Friday,banana-bread,Banana Bread Loaf,6,350,0
+2026-09-11,Friday,chocolate-cake-1kg,Chocolate Cake (1 kg),6,900,0
+2026-09-12,Saturday,sourdough-loaf,Sourdough Loaf,20,220,0
+2026-09-12,Saturday,butter-croissant,Butter Croissant,39,90,0
+2026-09-12,Saturday,chocolate-chip-cookie,Chocolate Chip Cookie,63,60,0
+2026-09-12,Saturday,cinnamon-roll,Cinnamon Roll,22,120,0
+2026-09-12,Saturday,banana-bread,Banana Bread Loaf,8,350,0
+2026-09-12,Saturday,chocolate-cake-1kg,Chocolate Cake (1 kg),2,900,0
+2026-09-13,Sunday,sourdough-loaf,Sourdough Loaf,21,220,0
+2026-09-13,Sunday,butter-croissant,Butter Croissant,32,90,0
+2026-09-13,Sunday,chocolate-chip-cookie,Chocolate Chip Cookie,37,60,0
+2026-09-13,Sunday,cinnamon-roll,Cinnamon Roll,23,120,0
+2026-09-13,Sunday,banana-bread,Banana Bread Loaf,8,350,0
+2026-09-13,Sunday,chocolate-cake-1kg,Chocolate Cake (1 kg),1,900,0
+2026-09-15,Tuesday,sourdough-loaf,Sourdough Loaf,11,220,0
+2026-09-15,Tuesday,butter-croissant,Butter Croissant,18,90,0
+2026-09-15,Tuesday,chocolate-chip-cookie,Chocolate Chip Cookie,30,60,0
+2026-09-15,Tuesday,cinnamon-roll,Cinnamon Roll,13,120,0
+2026-09-15,Tuesday,banana-bread,Banana Bread Loaf,1,350,0
+2026-09-15,Tuesday,chocolate-cake-1kg,Chocolate Cake (1 kg),1,900,0
+2026-09-16,Wednesday,sourdough-loaf,Sourdough Loaf,13,220,0
+2026-09-16,Wednesday,butter-croissant,Butter Croissant,28,90,0
+2026-09-16,Wednesday,chocolate-chip-cookie,Chocolate Chip Cookie,34,60,0
+2026-09-16,Wednesday,cinnamon-roll,Cinnamon Roll,5,120,0
+2026-09-16,Wednesday,banana-bread,Banana Bread Loaf,5,350,0
+2026-09-16,Wednesday,chocolate-cake-1kg,Chocolate Cake (1 kg),1,900,0
+2026-09-17,Thursday,sourdough-loaf,Sourdough Loaf,14,220,0
+2026-09-17,Thursday,butter-croissant,Butter Croissant,26,90,0
+2026-09-17,Thursday,chocolate-chip-cookie,Chocolate Chip Cookie,40,60,0
+2026-09-17,Thursday,cinnamon-roll,Cinnamon Roll,15,120,0
+2026-09-17,Thursday,banana-bread,Banana Bread Loaf,5,350,0
+2026-09-17,Thursday,chocolate-cake-1kg,Chocolate Cake (1 kg),3,900,0
+2026-09-18,Friday,sourdough-loaf,Sourdough Loaf,19,220,0
+2026-09-18,Friday,butter-croissant,Butter Croissant,38,90,0
+2026-09-18,Friday,chocolate-chip-cookie,Chocolate Chip Cookie,53,60,0
+2026-09-18,Friday,cinnamon-roll,Cinnamon Roll,13,120,0
+2026-09-18,Friday,banana-bread,Banana Bread Loaf,5,350,0
+2026-09-18,Friday,chocolate-cake-1kg,Chocolate Cake (1 kg),2,900,0
+2026-09-19,Saturday,sourdough-loaf,Sourdough Loaf,25,220,0
+2026-09-19,Saturday,butter-croissant,Butter Croissant,58,90,0
+2026-09-19,Saturday,chocolate-chip-cookie,Chocolate Chip Cookie,67,60,0
+2026-09-19,Saturday,cinnamon-roll,Cinnamon Roll,19,120,0
+2026-09-19,Saturday,banana-bread,Banana Bread Loaf,5,350,0
+2026-09-19,Saturday,chocolate-cake-1kg,Chocolate Cake (1 kg),2,900,0
+2026-09-20,Sunday,sourdough-loaf,Sourdough Loaf,19,220,0
+2026-09-20,Sunday,butter-croissant,Butter Croissant,42,90,0
+2026-09-20,Sunday,chocolate-chip-cookie,Chocolate Chip Cookie,64,60,1
+2026-09-20,Sunday,cinnamon-roll,Cinnamon Roll,21,120,0
+2026-09-20,Sunday,banana-bread,Banana Bread Loaf,5,350,0
+2026-09-20,Sunday,chocolate-cake-1kg,Chocolate Cake (1 kg),1,900,0
+2026-09-22,Tuesday,sourdough-loaf,Sourdough Loaf,13,220,0
+2026-09-22,Tuesday,butter-croissant,Butter Croissant,27,90,0
+2026-09-22,Tuesday,chocolate-chip-cookie,Chocolate Chip Cookie,29,60,0
+2026-09-22,Tuesday,cinnamon-roll,Cinnamon Roll,9,120,0
+2026-09-22,Tuesday,banana-bread,Banana Bread Loaf,2,350,0
+2026-09-22,Tuesday,chocolate-cake-1kg,Chocolate Cake (1 kg),1,900,0
+2026-09-23,Wednesday,sourdough-loaf,Sourdough Loaf,11,220,0
+2026-09-23,Wednesday,butter-croissant,Butter Croissant,21,90,0
+2026-09-23,Wednesday,chocolate-chip-cookie,Chocolate Chip Cookie,31,60,0
+2026-09-23,Wednesday,cinnamon-roll,Cinnamon Roll,11,120,0
+2026-09-23,Wednesday,banana-bread,Banana Bread Loaf,7,350,0
+2026-09-24,Thursday,sourdough-loaf,Sourdough Loaf,9,220,0
+2026-09-24,Thursday,butter-croissant,Butter Croissant,22,90,0
+2026-09-24,Thursday,chocolate-chip-cookie,Chocolate Chip Cookie,33,60,0
+2026-09-24,Thursday,cinnamon-roll,Cinnamon Roll,18,120,0
+2026-09-24,Thursday,banana-bread,Banana Bread Loaf,6,350,0
+2026-09-24,Thursday,chocolate-cake-1kg,Chocolate Cake (1 kg),1,900,0
+2026-09-25,Friday,sourdough-loaf,Sourdough Loaf,11,220,0
+2026-09-25,Friday,butter-croissant,Butter Croissant,43,90,0
+2026-09-25,Friday,chocolate-chip-cookie,Chocolate Chip Cookie,38,60,0
+2026-09-25,Friday,cinnamon-roll,Cinnamon Roll,19,120,0
+2026-09-25,Friday,banana-bread,Banana Bread Loaf,2,350,0
+2026-09-25,Friday,chocolate-cake-1kg,Chocolate Cake (1 kg),2,900,0
+2026-09-26,Saturday,sourdough-loaf,Sourdough Loaf,13,220,0
+2026-09-26,Saturday,butter-croissant,Butter Croissant,39,90,0
+2026-09-26,Saturday,chocolate-chip-cookie,Chocolate Chip Cookie,49,60,0
+2026-09-26,Saturday,cinnamon-roll,Cinnamon Roll,23,120,0
+2026-09-26,Saturday,banana-bread,Banana Bread Loaf,3,350,0
+2026-09-26,Saturday,chocolate-cake-1kg,Chocolate Cake (1 kg),5,900,0
+2026-09-27,Sunday,sourdough-loaf,Sourdough Loaf,17,220,0
+2026-09-27,Sunday,butter-croissant,Butter Croissant,45,90,0
+2026-09-27,Sunday,chocolate-chip-cookie,Chocolate Chip Cookie,57,60,0
+2026-09-27,Sunday,cinnamon-roll,Cinnamon Roll,25,120,0
+2026-09-27,Sunday,banana-bread,Banana Bread Loaf,7,350,0
+2026-09-27,Sunday,chocolate-cake-1kg,Chocolate Cake (1 kg),1,900,0
+2026-09-29,Tuesday,sourdough-loaf,Sourdough Loaf,10,220,0
+2026-09-29,Tuesday,butter-croissant,Butter Croissant,30,90,0
+2026-09-29,Tuesday,chocolate-chip-cookie,Chocolate Chip Cookie,29,60,0
+2026-09-29,Tuesday,cinnamon-roll,Cinnamon Roll,13,120,0
+2026-09-29,Tuesday,banana-bread,Banana Bread Loaf,3,350,0
+2026-09-29,Tuesday,chocolate-cake-1kg,Chocolate Cake (1 kg),1,900,0
+2026-09-30,Wednesday,sourdough-loaf,Sourdough Loaf,15,220,0
+2026-09-30,Wednesday,butter-croissant,Butter Croissant,18,90,0
+2026-09-30,Wednesday,chocolate-chip-cookie,Chocolate Chip Cookie,38,60,0
+2026-09-30,Wednesday,cinnamon-roll,Cinnamon Roll,9,120,0
+2026-09-30,Wednesday,banana-bread,Banana Bread Loaf,4,350,0
+2026-09-30,Wednesday,chocolate-cake-1kg,Chocolate Cake (1 kg),1,900,0
+2026-10-01,Thursday,sourdough-loaf,Sourdough Loaf,16,220,0
+2026-10-01,Thursday,butter-croissant,Butter Croissant,25,90,0
+2026-10-01,Thursday,chocolate-chip-cookie,Chocolate Chip Cookie,44,60,0
+2026-10-01,Thursday,cinnamon-roll,Cinnamon Roll,12,120,0
+2026-10-01,Thursday,banana-bread,Banana Bread Loaf,6,350,0
+2026-10-01,Thursday,chocolate-cake-1kg,Chocolate Cake (1 kg),3,900,0
+2026-10-02,Friday,sourdough-loaf,Sourdough Loaf,16,220,0
+2026-10-02,Friday,butter-croissant,Butter Croissant,31,90,0
+2026-10-02,Friday,chocolate-chip-cookie,Chocolate Chip Cookie,61,60,1
+2026-10-02,Friday,cinnamon-roll,Cinnamon Roll,14,120,0
+2026-10-02,Friday,banana-bread,Banana Bread Loaf,5,350,0
+2026-10-02,Friday,chocolate-cake-1kg,Chocolate Cake (1 kg),1,900,0
+2026-10-03,Saturday,sourdough-loaf,Sourdough Loaf,19,220,0
+2026-10-03,Saturday,butter-croissant,Butter Croissant,46,90,0
+2026-10-03,Saturday,chocolate-chip-cookie,Chocolate Chip Cookie,70,60,0
+2026-10-03,Saturday,cinnamon-roll,Cinnamon Roll,28,120,0
+2026-10-03,Saturday,banana-bread,Banana Bread Loaf,8,350,0
+2026-10-03,Saturday,chocolate-cake-1kg,Chocolate Cake (1 kg),5,900,0
