@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #faf7f0;
+  --color-paper: #fffdf8;
+  --color-line: #e7e1d3;
+  --color-line-strong: #d6cdb9;
+  --color-ink: #1d2a22;
+  --color-muted: #66705f;
+  --color-forest: #1f3d2b;
+  --color-forest-600: #2b5139;
+  --color-forest-50: #edf2ec;
+  --color-sage: #8fa98f;
+  --color-sage-100: #e3ebe0;
+  --color-amber: #b45309;
+  --color-amber-50: #fdf3e6;
+  --color-danger: #a33a2b;
+  --color-danger-50: #fbeeeb;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;
+
+  --shadow-card: 0 1px 2px rgb(29 42 34 / 0.04), 0 1px 1px rgb(29 42 34 / 0.03);
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-ink);
+}
+
+/* Remove number spinners: quantities are edited by typing, spinners crowd small inputs. */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
