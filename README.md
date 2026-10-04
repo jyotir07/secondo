@@ -243,6 +243,6 @@ properties.
 
 ## Hacktoberfest: Build for a Friend
 
-Built for the Hacktoberfest 2026 *Build for a Friend* challenge (#hf26challenge). A draft of the
-write-up is in [`docs/dev-article.md`](docs/dev-article.md). It has explicit placeholders for
-the friend's story and feedback, which must come from them and not be invented.
+Built for the Hacktoberfest 2026 *Build for a Friend* challenge (#hf26challenge). The write-up
+is in [`docs/dev-article.md`](docs/dev-article.md). Its "friend", Sidd, is a composite of small
+café owners in Bangalore, and the article says so. It contains no invented feedback or results.
