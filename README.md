@@ -254,9 +254,12 @@ properties.
 
 ## Known limitations
 
-- **Synthetic data only.** No real business has used SECONDO yet, so there is no real-world
-  accuracy, waste reduction or user feedback to report.
+- **Synthetic data only.** No real business has run SECONDO on its own sales yet, so there is
+  no real-world accuracy or waste reduction to report. The only user feedback so far is one café
+  owner's reaction (see the article).
 - **Gemma path not yet run live** (see above).
+- Saved orders can't be edited or cancelled. An extracted order can be corrected before saving,
+  but last-minute changes to a saved order aren't supported yet.
 - The bundled history ends on 3 Oct 2026. On a later date the plan warns that the history is
   stale.
 - Promotions in the sample CSV are not imported or used as a forecast feature.
@@ -268,14 +271,16 @@ properties.
 
 ## Roadmap
 
-1. Run with a real bakery's history and report real measured accuracy.
-2. Verify the Gemma path end to end with live Ollama, and record extraction accuracy on a set of
+1. Edit and cancel saved orders, so last-minute changes can be corrected quickly.
+2. Run with a real bakery's history and report real measured accuracy.
+3. Verify the Gemma path end to end with live Ollama, and record extraction accuracy on a set of
    real (anonymised) messages.
-3. A larger hosted instance (or separate model host) so the hosted demo can run TabPFN and Gemma too.
-4. Inventory on hand, so restock suggestions can be made instead of just totals.
+4. A larger hosted instance (or separate model host) so the hosted demo can run TabPFN and Gemma too.
+5. Inventory on hand, so restock suggestions can be made instead of just totals.
 
 ## Hacktoberfest: Build for a Friend
 
 Built for the Hacktoberfest 2026 *Build for a Friend* challenge (#hf26challenge). The write-up
-is in [`docs/dev-article.md`](docs/dev-article.md). Its "friend", Sidd, is a composite of small
-café owners in Bangalore, and the article says so. It contains no invented feedback or results.
+is in [`docs/dev-article.md`](docs/dev-article.md). It was built for Sidd, a friend who runs a
+small café in Bangalore, and includes Sidd's answers to four questions after seeing SECONDO.
+The feedback is quoted as given, and the results are only what was measured on synthetic data.
