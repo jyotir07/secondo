@@ -46,7 +46,9 @@ class PlanConflict(ValueError):
 
 def transition(plan: KitchenPlan, to: PlanStatus) -> None:
     if to not in ALLOWED_TRANSITIONS[plan.status]:
-        raise InvalidTransition(f"Cannot move a {plan.status.value} plan to {to.value}.")
+        raise InvalidTransition(
+            f"This plan is {plan.status.value} and can no longer be {to.value}."
+        )
     plan.status = to
     plan.reviewed_at = utc_now()
     if to == PlanStatus.APPROVED:
