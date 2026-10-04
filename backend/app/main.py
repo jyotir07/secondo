@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.api import forecasts, orders, plans, system
 from app.config import Settings, load_settings
 from app.container import Container
+from app.observability import init_sentry
 from app.repository import Repository, SQLiteRepository
 
 
@@ -11,6 +12,7 @@ def create_app(
     settings: Settings | None = None, repo: Repository | None = None, clock=None
 ) -> FastAPI:
     settings = settings or load_settings()
+    init_sentry(settings)
     repo = repo or SQLiteRepository(settings.database_path)
 
     app = FastAPI(title="SECONDO API", version="0.1.0")

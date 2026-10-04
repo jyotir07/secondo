@@ -21,6 +21,7 @@ def settings():
         database_path=Path(":memory:"),
         extraction_provider="rules",
         forecast_provider="weekday_average",
+        sentry_dsn=None,  # a developer's backend/.env must not make tests report to Sentry
     )
 
 
