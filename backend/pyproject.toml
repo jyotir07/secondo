@@ -15,6 +15,10 @@ dependencies = [
     "tzdata>=2024.1",
 ]
 
+[project.optional-dependencies]
+# TabPFN pulls in torch (CPU build below). The app runs without it and labels the fallback.
+tabpfn = ["tabpfn>=2.0"]
+
 [dependency-groups]
 dev = [
     "pytest>=8",
@@ -34,3 +38,11 @@ pythonpath = ["."]
 
 [tool.ruff.lint.flake8-bugbear]
 extend-immutable-calls = ["fastapi.Depends", "fastapi.Query", "fastapi.File", "fastapi.Form", "fastapi.Body"]
+
+[tool.uv.sources]
+torch = [{ index = "pytorch-cpu" }]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true

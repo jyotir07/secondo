@@ -1,3 +1,4 @@
+import threading
 from datetime import date, datetime
 from zoneinfo import ZoneInfo
 
@@ -20,6 +21,8 @@ class Container:
         self.business: Business = ensure_seeded(repo, settings)
         self._clock = clock or (lambda: datetime.now(ZoneInfo(self.business.timezone)).date())
         self.extraction = ExtractionService(settings)
+        self.forecast_cache: dict = {}
+        self.forecast_lock = threading.Lock()
 
     def today(self) -> date:
         """Operational 'today' in the business's own timezone, not the server's."""
@@ -29,7 +32,13 @@ class Container:
         return IngestionService(self.repo, self.business)
 
     def demand(self) -> DemandService:
-        return DemandService(self.repo, self.business, self.settings.forecast_provider)
+        return DemandService(
+            self.repo,
+            self.business,
+            self.settings.forecast_provider,
+            cache=self.forecast_cache,
+            lock=self.forecast_lock,
+        )
 
     def planning(self) -> PlanningService:
         return PlanningService(self.repo, self.business, self.demand())

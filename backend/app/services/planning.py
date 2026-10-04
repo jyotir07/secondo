@@ -146,7 +146,20 @@ class PlanningService:
                         f"Last {len(obs)} {weekday}s sold {sold}, an average of {_fmt(predicted)}."
                     )
                 else:
-                    reasons.append(f"{self.demand.provider.label} forecast: {_fmt(predicted)}.")
+                    interval = f.evaluation_metadata.get("interval_80") if f else None
+                    detail = (
+                        f" (80% range {_fmt(interval[0])} to {_fmt(interval[1])})"
+                        if interval
+                        else ""
+                    )
+                    reasons.append(
+                        f"{self.demand.provider.label} forecast: {_fmt(predicted)}{detail}."
+                    )
+                    if obs is not None and len(obs) >= 2:
+                        sold = ", ".join(str(int(v)) for v in obs)
+                        reasons.append(
+                            f"For reference, the last {len(obs)} {weekday}s sold {sold}."
+                        )
                 if obs is not None and len(obs) < 2:
                     warnings.append(
                         PlanWarning(

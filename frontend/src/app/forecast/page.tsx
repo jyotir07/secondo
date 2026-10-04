@@ -5,11 +5,11 @@ import Link from "next/link";
 import { useState } from "react";
 import { CartesianGrid, Legend, Line, LineChart, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { Badge, Button, Card, Empty, ErrorState, Loading, Notice, PageHeader, cx, inputClass } from "@/components/ui";
-import { post, type EvaluationReport, type ForecastResponse, type Product } from "@/lib/api";
+import { post, type EvaluationReport, type ForecastResponse, type Product, type ProviderStatus } from "@/lib/api";
 import { PROVIDER_LABEL, formatDay, formatShortDay, num } from "@/lib/format";
 import { useApi } from "@/lib/use-api";
 
-const C = { actual: "#8a8170", model: "#1f3d2b", baseline: "#8fa98f", grid: "#e7e1d3", axis: "#66705f", amber: "#b45309" };
+const C = { actual: "#8a8170", model: "#1f3d2b", baseline: "#8fa98f", grid: "#e7e1d3", axis: "#66705f", other: "#7d8ca0" };
 const axisProps = { stroke: C.axis, fontSize: 12, tickLine: false, axisLine: false } as const;
 const tooltipStyle = { borderRadius: 8, border: `1px solid ${C.grid}`, fontSize: 13, background: "#fffdf8" };
 
@@ -17,6 +17,7 @@ export default function ForecastPage() {
   const products = useApi<Product[]>("/products");
   const forecast = useApi<ForecastResponse>("/forecasts?history_days=56");
   const evaluation = useApi<EvaluationReport>("/forecasts/evaluation");
+  const status = useApi<ProviderStatus>("/settings/providers");
   const [selected, setSelected] = useState("");
   const [running, setRunning] = useState(false);
   const [runError, setRunError] = useState<string>();
@@ -32,7 +33,7 @@ export default function ForecastPage() {
     setRunError(undefined);
     try {
       await post<ForecastResponse>("/forecasts/run", {});
-      await Promise.all([forecast.reload(), evaluation.reload()]);
+      await Promise.all([forecast.reload(), evaluation.reload(), status.reload()]);
     } catch (e) {
       setRunError(e instanceof Error ? e.message : String(e));
     } finally {
@@ -52,7 +53,7 @@ export default function ForecastPage() {
     .filter((p) => p.product_id === pid)
     .map((p) => ({ date: p.date, actual: p.actual, ...p.predictions }));
   const seriesColor = (name: string) =>
-    name === forecast.data?.baseline_name ? C.baseline : name === forecast.data?.model_name ? C.model : C.amber;
+    name === forecast.data?.baseline_name ? C.baseline : name === forecast.data?.model_name ? C.model : C.other;
   const best = providers.length > 1 ? [...providers].sort((a, b) => a.mae - b.mae)[0] : undefined;
 
   return (
@@ -68,6 +69,19 @@ export default function ForecastPage() {
         }
       />
 
+      {status.data?.forecasting.fallback_reason && (
+        <div className="mb-6">
+          <Notice>
+            <strong className="font-medium">{status.data.forecasting.configured === "tabpfn" ? "TabPFN is not running." : "Forecast model unavailable."}</strong>{" "}
+            {status.data.forecasting.fallback_reason} Forecasts below come from the fallback, not TabPFN.
+          </Notice>
+        </div>
+      )}
+      {running && (
+        <div className="mb-6">
+          <Notice tone="neutral">Forecasting… the first TabPFN run on a CPU can take up to a minute. Later runs reuse the result until your sales change.</Notice>
+        </div>
+      )}
       {runError && <div className="mb-6"><ErrorState message={runError} /></div>}
       {forecast.error && <div className="mb-6"><ErrorState message={forecast.error} onRetry={forecast.reload} /></div>}
 
@@ -119,6 +133,14 @@ export default function ForecastPage() {
                     <dd className="tabular font-serif text-4xl text-forest">{num(fc.predicted_quantity)}</dd>
                     <dd className="text-sm text-muted">expected units · {forecast.data?.model_label}</dd>
                   </div>
+                  {fc.evaluation_metadata.interval_80 && (
+                    <div className="border-t border-line pt-3 text-sm">
+                      <dt className="text-muted">80% likely range</dt>
+                      <dd className="tabular font-medium">
+                        {num(fc.evaluation_metadata.interval_80[0])} – {num(fc.evaluation_metadata.interval_80[1])} units
+                      </dd>
+                    </div>
+                  )}
                   <div className="border-t border-line pt-3 text-sm">
                     <dt className="text-muted">Baseline says</dt>
                     <dd className="tabular font-medium">{num(fc.baseline_quantity)}</dd>
@@ -142,7 +164,7 @@ export default function ForecastPage() {
             actions={<FlaskConical className="size-5 text-sage" aria-hidden />}
           >
             {evaluation.loading && !ev ? (
-              <Loading />
+              <Loading label="Backtesting each model on recent weeks… TabPFN on CPU can take up to a minute the first time." />
             ) : evaluation.error ? (
               <ErrorState message={evaluation.error} onRetry={evaluation.reload} />
             ) : !ev?.sufficient_data ? (

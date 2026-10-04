@@ -36,7 +36,7 @@ def load_settings() -> Settings:
         ollama_url=os.getenv("OLLAMA_URL", "http://127.0.0.1:11434").rstrip("/"),
         ollama_model=os.getenv("OLLAMA_MODEL", "gemma3:4b"),
         ollama_timeout_s=float(os.getenv("OLLAMA_TIMEOUT_S", "60")),
-        forecast_provider=os.getenv("FORECAST_PROVIDER", "weekday_average"),
+        forecast_provider=os.getenv("FORECAST_PROVIDER", "tabpfn"),
         cors_origins=[
             o.strip()
             for o in os.getenv("CORS_ORIGINS", "http://localhost:3000").split(",")

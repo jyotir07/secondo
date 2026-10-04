@@ -86,6 +86,11 @@ export default function PlanPage() {
         </div>
       </Card>
 
+      {busy === "generate" && (
+        <div className="mb-6">
+          <Notice tone="neutral">Building the plan… forecasting each product. The first TabPFN run on a CPU can take up to a minute.</Notice>
+        </div>
+      )}
       {error && <div className="mb-6"><ErrorState message={error} /></div>}
       {flash && <div className="mb-6"><Notice tone="green" icon={<Check className="size-4" />}>{flash}</Notice></div>}
 

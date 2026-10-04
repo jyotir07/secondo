@@ -155,6 +155,29 @@ def _metrics(errors: np.ndarray, actuals: np.ndarray) -> tuple[float, float | No
 MIN_TRAIN_DAYS = 21
 
 
+def _holdout_predictions(
+    history: pd.DataFrame, providers: list, holdout: list[date], product_ids: list[str]
+) -> dict[date, dict[str, dict[str, float]]]:
+    """{day: {provider: {product: prediction}}}, each made without seeing that day's sales.
+
+    Providers with `predict_days` (expensive models) are refit once per block of
+    `refit_every` days on data before the block; inside a block, each day's features still
+    use only earlier days. Other providers are re-run for every day.
+    """
+    out: dict[date, dict[str, dict[str, float]]] = {d: {} for d in holdout}
+    for p in providers:
+        if hasattr(p, "predict_days"):
+            for i in range(0, len(holdout), p.refit_every):
+                block = holdout[i : i + p.refit_every]
+                visible = history[history.index < block[-1]]
+                for day, preds in p.predict_days(visible, block, product_ids).items():
+                    out[day][p.name] = {pid: v["mean"] for pid, v in preds.items()}
+        else:
+            for day in holdout:
+                out[day][p.name] = p.predict(history[history.index < day], day, product_ids)
+    return out
+
+
 def backtest(
     history: pd.DataFrame, providers: list[ForecastProvider], holdout_days: int = 14
 ) -> EvaluationReport:
@@ -165,6 +188,13 @@ def backtest(
         "model predicts using only sales strictly before that day, then is compared to what "
         "actually sold."
     )
+    for p in providers:
+        if hasattr(p, "predict_days"):
+            method += (
+                f" {p.label} is retrained every {p.refit_every} open days on data before that "
+                "block (features for each day still use only earlier days), to keep CPU time "
+                "reasonable."
+            )
     base = dict(
         method=method,
         history_start=open_days[0] if open_days else None,
@@ -188,10 +218,10 @@ def backtest(
         )
 
     holdout = open_days[-holdout_days:]
+    by_day = _holdout_predictions(history, providers, holdout, product_ids)
     points: list[BacktestPoint] = []
     for day in holdout:
-        train = history[history.index < day]
-        preds = {p.name: p.predict(train, day, product_ids) for p in providers}
+        preds = by_day[day]
         for pid in product_ids:
             actual = history.at[day, pid]
             if pd.isna(actual):
@@ -237,5 +267,7 @@ def backtest(
         notes=[
             "Bias > 0 means the model over-predicts on average (risk of waste); "
             "bias < 0 means it under-predicts (risk of selling out).",
+            f"{len(holdout)} days is a short window: small differences between models may not "
+            "hold on future weeks.",
         ],
     )

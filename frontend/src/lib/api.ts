@@ -99,6 +99,7 @@ export interface Forecast {
   evaluation_metadata: {
     backtest_mae?: number | null;
     backtest_days?: number;
+    interval_80?: [number, number] | null;
     fallback_reason?: string | null;
     [key: string]: unknown;
   };
