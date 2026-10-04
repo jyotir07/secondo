@@ -99,6 +99,11 @@ export default function SettingsPage() {
                   ? "Customer messages are read by Gemma on this machine; no cloud AI service receives them."
                   : "Customer messages are read by the rule-based parser on the server; no cloud AI service receives them."}
               </p>
+              <p>
+                {s.narration.available
+                  ? "Voice briefings use ElevenLabs (cloud): only product quantities, dietary labels and warnings are sent, never customer names or notes. Audio is generated only for approved plans."
+                  : "Voice briefings are off. Nothing is sent to ElevenLabs."}
+              </p>
             </div>
           </Card>
         </div>

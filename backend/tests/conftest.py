@@ -25,6 +25,7 @@ def settings():
         forecast_provider="weekday_average",
         sentry_dsn=None,  # a developer's backend/.env must not make tests report to Sentry
         mongodb_uri=None,  # the repo fixture decides the backend explicitly
+        elevenlabs_api_key=None,  # tests must never spend real ElevenLabs credits
     )
 
 

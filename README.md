@@ -140,6 +140,7 @@ Everything is optional; see `backend/.env.example` and `frontend/.env.example`.
 | `FORECAST_PROVIDER` | `tabpfn` | `tabpfn`, `weekday_average` or `historical_average` |
 | `CORS_ORIGINS` | `http://localhost:3000` | Only needed if the browser calls FastAPI directly |
 | `SENTRY_DSN`, `SENTRY_ENVIRONMENT`, `SENTRY_TRACES_SAMPLE_RATE` | unset, `local`, `1.0` | Sentry error monitoring and tracing; off without a DSN |
+| `ELEVENLABS_API_KEY`, `ELEVENLABS_VOICE_ID`, `ELEVENLABS_MODEL_ID` | unset, `JBFqnCBsd6RMkjVDRZzb`, `eleven_multilingual_v2` | Voice briefing of approved plans. The key needs only Text to Speech access. Free accounts must use a default (premade) voice |
 | `BACKEND_URL` (frontend) | `http://127.0.0.1:8000` | Where Next.js forwards `/api/*` |
 
 ### Tests and checks
@@ -192,6 +193,7 @@ properties.
   to a cloud LLM.
 - TabPFN runs locally on CPU. The only network access is the one-time download of model weights.
 - If Sentry is enabled, events carry timings, model names, token counts and error messages, but never the message text or customer names, and `send_default_pii` is off. Tests never report to Sentry.
+- If ElevenLabs is configured, approved plans can be read aloud. Only product quantities, dietary labels and warnings are sent to ElevenLabs.
 - **Settings → Export all my data** downloads every stored record as JSON.
 - Only what the plan needs is stored: a display name, dietary constraints and notes per
   customer, with no phone numbers.
@@ -209,7 +211,8 @@ properties.
    range, and the backtest table comparing TabPFN with the baseline using the measured numbers.
 4. **Kitchen plan:** **Generate plan**. Read one explanation aloud: forecast, range, recent
    same-weekday sales and pre-orders. Edit a quantity, add a note, **Save & approve**.
-5. **Settings:** show that everything runs on this machine and that the data can be exported.
+5. **Voice briefing:** on the approved plan, click **Play briefing**.
+6. **Settings:** show that everything runs on this machine and that the data can be exported.
 
 ## Sponsor technologies: actual status
 
@@ -220,7 +223,7 @@ properties.
 | Render | ❌ Not done | No deployment exists yet |
 | **MongoDB Atlas** | ✅ Implemented and verified against a real Atlas cluster | `backend/app/repository_mongo.py` implements the same `Repository` interface; used when `MONGODB_URI` is set, otherwise SQLite. Unique index on `(business_id, dedupe_key)` enforces duplicate detection in the database. `SECONDO_TEST_BACKEND=mongodb uv run pytest` runs the full suite against Atlas (56/56 passing). The app ran the full workflow on Atlas and the approved plan survived a backend restart. Screenshot: `docs/screenshots/settings-atlas.png`. |
 | **Sentry** | ✅ Implemented and verified against a real Sentry project | Error monitoring + tracing (`backend/app/observability.py`), off unless `SENTRY_DSN` is set. Custom spans: `secondo.extract` → `gen_ai.request` (Gemma call: model, tokens, attempt), `secondo.plan.generate`, `secondo.forecast.backtest`, `secondo.model.tabpfn`. Gemma failures while Ollama is up and TabPFN crashes become issues. A real trace showed plan generation at 22.3 s, dominated by three ~7 s TabPFN runs. |
-| ElevenLabs | ❌ Not done | No voice briefing |
+| **ElevenLabs** | ✅ Implemented and verified with a real API key | Approved plans get a **Play briefing** button (`backend/app/services/narration.py`). The backend calls ElevenLabs, so the key never reaches the browser. The text sent contains only quantities, dietary labels and warnings, never customer names or notes, and is shown on screen as a transcript. Audio is cached per plan. Verified: a 244-character briefing became about 23 s of MP3 in 8.7 s, and the cached replay took 0.05 s. Screenshot: `docs/screenshots/plan-briefing.png`. |
 
 ## Known limitations
 
@@ -231,6 +234,7 @@ properties.
   stale.
 - Promotions in the sample CSV are not imported or used as a forecast feature.
 - Single business, single user, no authentication. It's meant for one owner's own machine.
+- Voice-briefing audio is cached in memory, so after a restart a briefing is generated (and charged) again on first play.
 - Closed days are inferred from the last 8 weeks of sales, not configured explicitly.
 - Ingredient totals come from per-product recipes in `backend/app/seed.py`. There is no
   inventory tracking yet, so they are needs, not restock suggestions.
@@ -240,9 +244,8 @@ properties.
 1. Run with a real bakery's history and report real measured accuracy.
 2. Verify the Gemma path end to end with live Ollama, and record extraction accuracy on a set of
    real (anonymised) messages.
-3. Hosted demo on Render with sample data only; optional MongoDB Atlas repository adapter.
+3. Hosted demo on Render with sample data only (storage on MongoDB Atlas).
 4. Inventory on hand, so restock suggestions can be made instead of just totals.
-5. Optional voice briefing of the approved plan.
 
 ## Hacktoberfest: Build for a Friend
 
