@@ -1,7 +1,5 @@
 # SECONDO
-
 **Your business. Your data. Your intelligence.**
-
 SECONDO is a local-first operations copilot for small food businesses: home bakers, tiffin
 services and other one- or two-person kitchens. It turns sales history and messy customer
 messages into a daily baking plan that the owner reviews and approves. Every number in the plan
