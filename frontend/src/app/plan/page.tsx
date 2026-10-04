@@ -4,7 +4,7 @@ import { AlertTriangle, Check, ChefHat, Info, RotateCcw, ShoppingBasket, Users, 
 import Link from "next/link";
 import { useState } from "react";
 import { Badge, Button, Card, Empty, ErrorState, Field, Loading, Notice, PageHeader, cx, inputClass } from "@/components/ui";
-import { post, type Health, type KitchenPlan } from "@/lib/api";
+import { post, type Health, type KitchenPlan, type OrderList } from "@/lib/api";
 import { formatDay, formatLongDay, formatTimestamp, num } from "@/lib/format";
 import { useApi } from "@/lib/use-api";
 
@@ -15,6 +15,8 @@ const isOpen = (p: KitchenPlan) => p.status === "draft" || p.status === "modifie
 export default function PlanPage() {
   const health = useApi<Health>("/health");
   const plans = useApi<KitchenPlan[]>("/kitchen-plans");
+  const orders = useApi<OrderList>("/orders?limit=1");
+  const [confirmReject, setConfirmReject] = useState(false);
   const [selectedId, setSelectedId] = useState<string>();
   const [targetDate, setTargetDate] = useState("");
   const [edits, setEdits] = useState<Record<string, number>>({});
@@ -40,6 +42,7 @@ export default function PlanPage() {
       setSelectedId(updated.id);
       setEdits({});
       setNote("");
+      setConfirmReject(false);
       setFlash(message(updated));
     } catch (e) {
       setError(e instanceof Error ? e.message : String(e));
@@ -71,6 +74,15 @@ export default function PlanPage() {
         title="Kitchen plan"
         description="A suggested bake list with the reason behind every number. Nothing is final until you approve it."
       />
+
+      {orders.data?.total === 0 && (
+        <div className="mb-6">
+          <Notice icon={<Info className="size-4" />}>
+            There&apos;s no sales history yet, so a plan would only contain pre-orders.{" "}
+            <Link href="/orders" className="font-medium underline">Import sales on the Orders page</Link> first.
+          </Notice>
+        </div>
+      )}
 
       <Card className="mb-6">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
@@ -172,8 +184,19 @@ export default function PlanPage() {
                     {dirty && (
                       <Button variant="secondary" onClick={saveEdits} busy={busy === "save"} disabled={!!busy}>Save edits</Button>
                     )}
-                    <Button variant="danger" onClick={reject} busy={busy === "reject"} disabled={!!busy} icon={<X className="size-4" />}>Reject</Button>
+                    {!confirmReject && (
+                      <Button variant="danger" onClick={() => setConfirmReject(true)} disabled={!!busy} icon={<X className="size-4" />}>Reject</Button>
+                    )}
                   </div>
+                  {confirmReject && (
+                    <div className="flex flex-col gap-2 rounded-lg border border-danger/20 bg-danger-50 p-3 text-sm text-danger sm:flex-row sm:items-center sm:justify-between">
+                      <span>Reject this plan? It stays in the history but can&apos;t be reopened. You can generate a new one.</span>
+                      <span className="flex shrink-0 gap-2">
+                        <Button variant="danger" onClick={reject} busy={busy === "reject"} disabled={!!busy}>Yes, reject</Button>
+                        <Button variant="ghost" onClick={() => setConfirmReject(false)}>Keep it</Button>
+                      </span>
+                    </div>
+                  )}
                 </div>
               ) : (
                 <div className="border-t border-line px-5 py-3 text-sm text-muted">
@@ -247,7 +270,7 @@ export default function PlanPage() {
                   <li key={p.id}>
                     <button
                       type="button"
-                      onClick={() => { setSelectedId(p.id); setEdits({}); setFlash(undefined); }}
+                      onClick={() => { setSelectedId(p.id); setEdits({}); setFlash(undefined); setConfirmReject(false); }}
                       className={cx("flex w-full items-center justify-between gap-2 px-5 py-2.5 text-left text-sm hover:bg-cream", p.id === plan.id && "bg-forest-50")}
                     >
                       <span>{formatDay(p.target_date)}</span>

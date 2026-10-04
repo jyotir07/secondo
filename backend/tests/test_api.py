@@ -74,3 +74,17 @@ def test_providers_report_local_fallbacks(client):
     body = client.get("/api/settings/providers").json()
     assert body["extraction"]["active"] == "rules"
     assert body["forecasting"]["active"] == "weekday_average"
+
+
+def test_sample_import_is_labelled_and_export_contains_records(client):
+    assert client.get("/api/business").json()["sample_data_loaded"] is False
+    result = client.post("/api/orders/import-sample").json()
+    assert result["imported"] > 0
+    assert client.get("/api/business").json()["sample_data_loaded"] is True
+
+    res = client.get("/api/export")
+    assert res.status_code == 200
+    assert "attachment" in res.headers["content-disposition"]
+    body = res.json()
+    assert len(body["orders"]) == result["imported"]
+    assert {"business", "products", "customers", "forecasts", "kitchen_plans"} <= set(body)

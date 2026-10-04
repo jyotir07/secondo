@@ -25,7 +25,9 @@ export default function OverviewPage() {
   const preorders = all.filter((o) => today && o.order_date >= today && (o.status === "pending" || o.status === "confirmed"));
   const pending = (plans.data ?? []).filter((p) => p.status === "draft" || p.status === "modified");
   const latestPlan = plans.data?.[0];
-  const expected = forecast.data?.forecasts.reduce((s, f) => s + f.predicted_quantity, 0);
+  // A saved forecast for a day that has passed is history, not an expectation.
+  const upcoming = today && forecast.data?.target_date && forecast.data.target_date >= today ? forecast.data : undefined;
+  const expected = upcoming?.forecasts.reduce((s, f) => s + f.predicted_quantity, 0);
   const recent = [...all].sort((a, b) => b.created_at.localeCompare(a.created_at)).slice(0, 6);
   const hasHistory = (orders.data?.total ?? 0) > 0;
   const loading = orders.loading || plans.loading;
@@ -69,9 +71,11 @@ export default function OverviewPage() {
         title="What does the kitchen need?"
         description="Secondo turns your sales history and customer messages into a baking plan you approve. Nothing is baked on a guess you can't see."
         actions={
-          <Link href="/plan">
-            <Button icon={<ChefHat className="size-4" />}>Open kitchen plan</Button>
-          </Link>
+          hasHistory && (
+            <Link href="/plan">
+              <Button icon={<ChefHat className="size-4" />}>Open kitchen plan</Button>
+            </Link>
+          )
         }
       />
 
@@ -111,8 +115,8 @@ export default function OverviewPage() {
         <Stat label="Upcoming pre-orders" value={preorders.reduce((s, o) => s + o.quantity, 0)} hint="units promised to customers" loading={orders.loading} />
         <Stat
           label="Expected demand"
-          value={expected !== undefined && forecast.data?.target_date ? num(expected, 0) : "—"}
-          hint={forecast.data?.target_date ? `units for ${formatDay(forecast.data.target_date)}` : "run a forecast first"}
+          value={expected !== undefined && upcoming?.target_date ? num(expected, 0) : "—"}
+          hint={upcoming?.target_date ? `units for ${formatDay(upcoming.target_date)} · ${upcoming.model_label}` : "generate a plan or run a forecast"}
           loading={forecast.loading}
         />
         <Stat label="Awaiting approval" value={pending.length} hint={pending.length ? "plan needs your review" : "nothing pending"} loading={plans.loading} />
@@ -129,7 +133,7 @@ export default function OverviewPage() {
           ) : plans.error ? (
             <ErrorState message={plans.error} onRetry={plans.reload} />
           ) : !latestPlan ? (
-            <Empty title="No plan yet" icon={<ChefHat className="size-5" />} action={<Link href="/plan"><Button variant="secondary">Generate a plan</Button></Link>}>
+            <Empty title="No plan yet" icon={<ChefHat className="size-5" />} action={hasHistory && <Link href="/plan"><Button variant="secondary">Generate a plan</Button></Link>}>
               {hasHistory ? "Your history is ready. Generate tomorrow's plan to see what to bake." : "Load sales history first, then generate a plan."}
             </Empty>
           ) : (

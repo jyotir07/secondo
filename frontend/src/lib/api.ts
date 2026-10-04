@@ -8,6 +8,7 @@ export interface Business {
   business_type: string;
   timezone: string;
   currency: string;
+  sample_data_loaded: boolean;
 }
 
 export interface Product {

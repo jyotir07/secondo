@@ -109,6 +109,18 @@ async def import_orders(
         raise HTTPException(status.HTTP_422_UNPROCESSABLE_CONTENT, str(exc)) from exc
 
 
+@router.post("/import-sample")
+def import_sample(c: Container = Depends(get_container)) -> ImportResult:
+    """Imports the bundled synthetic sales and marks the business as holding sample data."""
+    if not SAMPLE_SALES_CSV.exists():
+        raise HTTPException(status.HTTP_404_NOT_FOUND, "Sample data has not been generated.")
+    result = c.ingestion().import_csv(SAMPLE_SALES_CSV.read_bytes(), c.today())
+    if not c.business.sample_data_loaded:
+        c.business.sample_data_loaded = True
+        c.repo.save_business(c.business)
+    return result
+
+
 @router.get("/sample-csv")
 def sample_csv() -> FileResponse:
     if not SAMPLE_SALES_CSV.exists():

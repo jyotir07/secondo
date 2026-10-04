@@ -1,6 +1,6 @@
 "use client";
 
-import { Cpu, Database, LineChart, ShieldCheck } from "lucide-react";
+import { Cpu, Database, Download, LineChart, ShieldCheck } from "lucide-react";
 import type { ReactNode } from "react";
 import { Badge, Card, ErrorState, Loading, Notice, PageHeader } from "@/components/ui";
 import type { Business, ProviderStatus } from "@/lib/api";
@@ -66,7 +66,18 @@ export default function SettingsPage() {
               <Row label="Business">{business.data?.name}</Row>
               <Row label="Timezone">{s.business.timezone}</Row>
               <Row label="Currency">{business.data?.currency}</Row>
+              <Row label="Sales history">
+                {business.data?.sample_data_loaded ? <Badge tone="amber">Includes synthetic sample data</Badge> : "Your own data"}
+              </Row>
             </dl>
+            <div className="mt-4 flex flex-wrap gap-2">
+              <a href="/api/export" download className="inline-flex h-9 items-center gap-2 rounded-lg border border-forest bg-forest px-3.5 text-sm font-medium text-cream hover:bg-forest-600">
+                <Download className="size-4" aria-hidden /> Export all my data (JSON)
+              </a>
+              <a href="/api/orders/sample-csv" download className="inline-flex h-9 items-center gap-2 rounded-lg border border-line-strong bg-paper px-3.5 text-sm font-medium text-ink hover:bg-cream">
+                CSV template (sample)
+              </a>
+            </div>
           </Card>
 
           <Card title="Privacy" actions={<ShieldCheck className="size-5 text-sage" aria-hidden />}>

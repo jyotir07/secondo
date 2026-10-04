@@ -1,9 +1,11 @@
 from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi.encoders import jsonable_encoder
+from fastapi.responses import JSONResponse
 
 from app.api.deps import get_container
 from app.api.schemas import ProductCreate
 from app.container import Container
-from app.models import Business, Product
+from app.models import Business, Product, utc_now
 from app.services.catalog import normalize
 from app.services.demand import available_providers
 
@@ -33,6 +35,26 @@ def create_product(body: ProductCreate, c: Container = Depends(get_container)) -
     product = Product(business_id=c.business.id, **body.model_dump())
     c.repo.save_product(product)
     return product
+
+
+@router.get("/export")
+def export(c: Container = Depends(get_container)) -> JSONResponse:
+    """Everything SECONDO stores for this business, as one JSON file the owner keeps."""
+    bid = c.business.id
+    data = {
+        "exported_at": utc_now(),
+        "business": c.business,
+        "products": c.repo.list_products(bid),
+        "customers": c.repo.list_customers(bid),
+        "orders": c.repo.list_orders(bid),
+        "forecasts": c.repo.list_forecasts(bid),
+        "kitchen_plans": c.repo.list_plans(bid),
+    }
+    filename = f"secondo-export-{c.today().isoformat()}.json"
+    return JSONResponse(
+        jsonable_encoder(data),
+        headers={"Content-Disposition": f'attachment; filename="{filename}"'},
+    )
 
 
 @router.get("/settings/providers")

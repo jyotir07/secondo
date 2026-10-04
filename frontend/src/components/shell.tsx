@@ -3,8 +3,9 @@
 import { ChefHat, LayoutDashboard, LineChart, ReceiptText, Settings } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import type { ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 import type { Business, ProviderStatus } from "@/lib/api";
+import { DATA_CHANGED } from "@/lib/actions";
 import { PROVIDER_LABEL } from "@/lib/format";
 import { useApi } from "@/lib/use-api";
 import { cx } from "./ui";
@@ -21,6 +22,16 @@ export function Shell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const business = useApi<Business>("/business");
   const providers = useApi<ProviderStatus>("/settings/providers");
+  const reloadBusiness = business.reload;
+  useEffect(() => {
+    window.addEventListener(DATA_CHANGED, reloadBusiness);
+    return () => window.removeEventListener(DATA_CHANGED, reloadBusiness);
+  }, [reloadBusiness]);
+  const sample = business.data?.sample_data_loaded && (
+    <span title="Sales history loaded from the bundled synthetic dataset, not a real business" className="inline-flex items-center rounded-full border border-amber/20 bg-amber-50 px-2 py-0.5 text-[11px] font-medium text-amber">
+      Synthetic sample data
+    </span>
+  );
   const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
 
   return (
@@ -30,6 +41,7 @@ export function Shell({ children }: { children: ReactNode }) {
           <span className="font-serif text-2xl tracking-tight text-forest">Secondo</span>
           <span className="mt-0.5 block text-xs text-muted">{business.data?.name ?? " "}</span>
         </Link>
+        {sample && <div className="mt-3 px-2">{sample}</div>}
         <nav className="mt-8 flex flex-col gap-0.5" aria-label="Primary">
           {NAV.map(({ href, label, icon: Icon }) => (
             <Link
@@ -64,7 +76,10 @@ export function Shell({ children }: { children: ReactNode }) {
       <header className="sticky top-0 z-20 border-b border-line bg-cream/95 backdrop-blur lg:hidden">
         <div className="flex items-baseline justify-between px-4 pt-3">
           <span className="font-serif text-xl text-forest">Secondo</span>
-          <span className="truncate pl-4 text-xs text-muted">{business.data?.name}</span>
+          <span className="flex min-w-0 items-center gap-2 pl-4 text-xs text-muted">
+            {sample}
+            <span className="truncate">{business.data?.name}</span>
+          </span>
         </div>
         <nav className="flex gap-1 overflow-x-auto px-3 py-2 [scrollbar-width:none]" aria-label="Primary">
           {NAV.map(({ href, label, icon: Icon }) => (

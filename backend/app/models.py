@@ -20,6 +20,7 @@ class Business(BaseModel):
     business_type: str
     timezone: str
     currency: str
+    sample_data_loaded: bool = False
     created_at: datetime = Field(default_factory=utc_now)
 
 
