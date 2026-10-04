@@ -148,7 +148,7 @@ export function MessagePanel({ products, onSaved }: { products: Product[]; onSav
                   min={1}
                   value={l.quantity}
                   onChange={(e) => setLines(lines.map((x, j) => (j === idx ? { ...x, quantity: Number(e.target.value) } : x)))}
-                  className={`${inputClass} tabular w-20 text-right`}
+                  className={`${inputClass} tabular w-20! text-right`}
                 />
                 <button
                   type="button"

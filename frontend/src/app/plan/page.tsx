@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Badge, Button, Card, Empty, ErrorState, Field, Loading, Notice, PageHeader, cx, inputClass } from "@/components/ui";
 import { post, type Health, type KitchenPlan, type OrderList } from "@/lib/api";
-import { formatDay, formatLongDay, formatTimestamp, num } from "@/lib/format";
+import { PROVIDER_LABEL, formatDay, formatLongDay, formatTimestamp, num } from "@/lib/format";
 import { useApi } from "@/lib/use-api";
 
 const STATUS_TONE = { draft: "amber", modified: "amber", approved: "green", rejected: "neutral" } as const;
@@ -121,7 +121,7 @@ export default function PlanPage() {
           <div className="min-w-0 space-y-6">
             <Card
               title={formatLongDay(plan.target_date)}
-              description={`${num(totalUnits, 0)} units to prepare · forecast by ${plan.model_name.replace("_", " ")} · created ${formatTimestamp(plan.created_at)}`}
+              description={`${num(totalUnits, 0)} units to prepare · forecast by ${PROVIDER_LABEL[plan.model_name] ?? plan.model_name} · created ${formatTimestamp(plan.created_at)}`}
               actions={<Badge tone={STATUS_TONE[plan.status]}>{STATUS_LABEL[plan.status]}</Badge>}
               padded={false}
             >
@@ -149,7 +149,7 @@ export default function PlanPage() {
                               min={0}
                               value={value}
                               onChange={(e) => setEdits({ ...edits, [item.product_id]: Math.max(0, Math.round(Number(e.target.value) || 0)) })}
-                              className={cx(inputClass, "tabular h-10 w-20 text-right text-base font-medium", changed && "border-amber/50")}
+                              className={cx(inputClass, "tabular h-10 w-20! text-right text-base font-medium", changed && "border-amber/50")}
                             />
                             {changed && (
                               <button
@@ -248,7 +248,7 @@ export default function PlanPage() {
               </Card>
             )}
 
-            <Card title="Ingredients needed" description="For the approved quantities" actions={<ShoppingBasket className="size-5 text-sage" aria-hidden />}>
+            <Card title="Ingredients needed" description={plan.status === "approved" ? "For the approved quantities" : "For the quantities in this plan"} actions={<ShoppingBasket className="size-5 text-sage" aria-hidden />}>
               {plan.ingredient_needs.length === 0 ? (
                 <p className="text-sm text-muted">No recipes recorded for these products.</p>
               ) : (
