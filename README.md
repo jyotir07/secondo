@@ -7,6 +7,8 @@ comes with the reason behind it.
 
 It runs on the owner's own computer, with open-weight models and no API keys.
 
+**Live demo (synthetic data, hosted on Render):** https://secondo-web.onrender.com. The free instance sleeps when idle, so the first load can take up to a minute. The hosted version uses the weekday average and the rule-based parser; TabPFN and Gemma run in the local setup.
+
 ![Overview](docs/screenshots/overview.png)
 
 > **About the data in this repository.** All sales data bundled here is **synthetic**: it was
@@ -245,7 +247,7 @@ properties.
 |---|---|---|
 | **Gemma** (via Ollama) | ✅ Implemented: JSON-schema structured output, Pydantic validation, retry, timeout, labelled fallback | `backend/app/services/gemma.py`, `tests/test_gemma.py`. **Note:** tested against a mocked Ollama API; Ollama was not installed on the development machine, so it has **not yet been run against live Gemma**. |
 | **TabPFN** | ✅ Implemented and measured | `backend/app/services/tabpfn_provider.py`, results table above |
-| **Render** | 🟡 Blueprint ready, deploy pending | `render.yaml` (API + dashboard, free plan). Verified locally: the exact build command on a clean checkout installs no PyTorch; the start command serves the hosted config (rules + weekday average) using about 113 MB RAM; the dashboard build compiles in `BACKEND_URL`. Not yet deployed to Render. |
+| **Render** | ✅ Deployed and verified | https://secondo-web.onrender.com (dashboard) and https://secondo-api.onrender.com (API), from `render.yaml` on the free plan. Verified live: health check through the dashboard proxy, data served from MongoDB Atlas, message reading, forecast backtest, ElevenLabs briefing (MP3 in 3.3 s), data export, and traces arriving in Sentry tagged `environment:render` with no errors. Screenshot: `docs/screenshots/render-live-settings.png`. |
 | **MongoDB Atlas** | ✅ Implemented and verified against a real Atlas cluster | `backend/app/repository_mongo.py` implements the same `Repository` interface; used when `MONGODB_URI` is set, otherwise SQLite. Unique index on `(business_id, dedupe_key)` enforces duplicate detection in the database. `SECONDO_TEST_BACKEND=mongodb uv run pytest` runs the full suite against Atlas (56/56 passing). The app ran the full workflow on Atlas and the approved plan survived a backend restart. Screenshot: `docs/screenshots/settings-atlas.png`. |
 | **Sentry** | ✅ Implemented and verified against a real Sentry project | Error monitoring + tracing (`backend/app/observability.py`), off unless `SENTRY_DSN` is set. Custom spans: `secondo.extract` → `gen_ai.request` (Gemma call: model, tokens, attempt), `secondo.plan.generate`, `secondo.forecast.backtest`, `secondo.model.tabpfn`. Gemma failures while Ollama is up and TabPFN crashes become issues. A real trace showed plan generation at 22.3 s, dominated by three ~7 s TabPFN runs. |
 | **ElevenLabs** | ✅ Implemented and verified with a real API key | Approved plans get a **Play briefing** button (`backend/app/services/narration.py`). The backend calls ElevenLabs, so the key never reaches the browser. The text sent contains only quantities, dietary labels and warnings, never customer names or notes, and is shown on screen as a transcript. Audio is cached per plan. Verified: a 244-character briefing became about 23 s of MP3 in 8.7 s, and the cached replay took 0.05 s. Screenshot: `docs/screenshots/plan-briefing.png`. |

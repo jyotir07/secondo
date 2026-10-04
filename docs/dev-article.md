@@ -119,5 +119,6 @@ over a few weeks, and that's the next step.
 ## Try it
 
 - Source code: https://github.com/jyotir07/secondo
+- Live demo (synthetic data): https://secondo-web.onrender.com. It runs the lighter models; TabPFN and Gemma run locally.
 - Demo video: [ADD LINK]
 - Setup takes about five minutes with no API keys; see the README.

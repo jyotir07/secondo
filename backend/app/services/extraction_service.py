@@ -82,7 +82,10 @@ class ExtractionService:
                 "active": "rules",
                 "model": None,
                 "available": True,
-                "detail": "Deterministic rule-based parser. Runs locally, no model needed.",
+                "detail": (
+                    "Deterministic rule-based parser. Runs inside the SECONDO server, "
+                    "no model needed."
+                ),
             }
         available, detail = self.model_status()
         return {
