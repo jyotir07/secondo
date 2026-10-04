@@ -49,7 +49,8 @@ export function Shell({ children }: { children: ReactNode }) {
           <p className="font-medium text-ink">Runs on this computer</p>
           {providers.data ? (
             <p className="mt-1 leading-relaxed">
-              Orders read by {PROVIDER_LABEL[providers.data.extraction.active] ?? providers.data.extraction.active}.
+              Orders read by {PROVIDER_LABEL[providers.data.extraction.active] ?? providers.data.extraction.active}
+              {providers.data.extraction.model && !providers.data.extraction.available && " (Gemma offline)"}.
               Forecasts by {providers.data.forecasting.active_label}.
             </p>
           ) : providers.error ? (

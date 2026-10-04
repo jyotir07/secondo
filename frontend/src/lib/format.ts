@@ -38,5 +38,5 @@ export const PROVIDER_LABEL: Record<string, string> = {
   weekday_average: "Weekday average",
   tabpfn: "TabPFN",
   rules: "Rule-based parser",
-  ollama: "Gemma (Ollama)",
+  ollama: "Gemma via Ollama",
 };

@@ -33,7 +33,7 @@ def load_settings() -> Settings:
         business_timezone=os.getenv("SECONDO_BUSINESS_TIMEZONE", "Asia/Kolkata"),
         business_currency=os.getenv("SECONDO_BUSINESS_CURRENCY", "INR"),
         extraction_provider=os.getenv("EXTRACTION_PROVIDER", "auto").lower(),
-        ollama_url=os.getenv("OLLAMA_URL", "http://localhost:11434").rstrip("/"),
+        ollama_url=os.getenv("OLLAMA_URL", "http://127.0.0.1:11434").rstrip("/"),
         ollama_model=os.getenv("OLLAMA_MODEL", "gemma3:4b"),
         ollama_timeout_s=float(os.getenv("OLLAMA_TIMEOUT_S", "60")),
         forecast_provider=os.getenv("FORECAST_PROVIDER", "weekday_average"),
