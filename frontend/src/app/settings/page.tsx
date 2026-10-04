@@ -61,7 +61,7 @@ export default function SettingsPage() {
 
           <Card title="Storage" actions={<Database className="size-5 text-sage" aria-hidden />}>
             <dl className="divide-y divide-line">
-              <Row label="Database"><Badge>{s.database.backend}</Badge></Row>
+              <Row label="Database"><Badge>{s.database.backend === "mongodb" ? "MongoDB Atlas" : "SQLite (local file)"}</Badge></Row>
               <Row label="Location"><code className="text-xs">{s.database.location}</code></Row>
               <Row label="Business">{business.data?.name}</Row>
               <Row label="Timezone">{s.business.timezone}</Row>
@@ -82,13 +82,22 @@ export default function SettingsPage() {
 
           <Card title="Privacy" actions={<ShieldCheck className="size-5 text-sage" aria-hidden />}>
             <div className="space-y-3 text-sm leading-relaxed text-muted">
+              {s.database.backend === "mongodb" ? (
+                <p>
+                  <strong className="font-medium text-ink">Cloud database (this setup).</strong> Orders, customer names and sales
+                  history are stored in MongoDB Atlas, not on this computer. Use sample data here, not real customer details.
+                  Unset <code>MONGODB_URI</code> to keep everything in a local file instead.
+                </p>
+              ) : (
+                <p>
+                  <strong className="font-medium text-ink">Local mode (this setup).</strong> Orders, customer names and sales history
+                  stay in the database file above, on this computer.
+                </p>
+              )}
               <p>
-                <strong className="font-medium text-ink">Local mode (this setup).</strong> Orders, customer names and sales history
-                stay in the database file above. Messages are read on this machine; no cloud AI service receives them.
-              </p>
-              <p>
-                <strong className="font-medium text-ink">Hosted demo.</strong> A hosted deployment stores data on that server and is not
-                offline. Use it with sample data, not real customer details.
+                {s.extraction.active === "ollama"
+                  ? "Customer messages are read by Gemma on this machine; no cloud AI service receives them."
+                  : "Customer messages are read by the rule-based parser on the server; no cloud AI service receives them."}
               </p>
             </div>
           </Card>

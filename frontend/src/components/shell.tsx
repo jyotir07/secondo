@@ -58,7 +58,9 @@ export function Shell({ children }: { children: ReactNode }) {
           ))}
         </nav>
         <div className="mt-auto rounded-lg border border-line bg-cream px-3 py-3 text-xs text-muted">
-          <p className="font-medium text-ink">Runs on this computer</p>
+          <p className="font-medium text-ink">
+            {providers.data?.database.backend === "mongodb" ? "Data in MongoDB Atlas" : "Runs on this computer"}
+          </p>
           {providers.data ? (
             <p className="mt-1 leading-relaxed">
               Orders read by {PROVIDER_LABEL[providers.data.extraction.active] ?? providers.data.extraction.active}

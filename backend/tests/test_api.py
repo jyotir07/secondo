@@ -1,9 +1,13 @@
 """End-to-end: import history, read a message, save it, plan, edit, approve. No API keys."""
 
 
-def test_health(client):
+def test_health(client, repo):
     body = client.get("/api/health").json()
-    assert body == {"status": "ok", "database": "sqlite", "today": "2026-10-04"}
+    assert body == {
+        "status": "ok",
+        "database": repo.describe()["backend"],
+        "today": "2026-10-04",
+    }
 
 
 def test_full_workflow(client, sample_csv):

@@ -133,6 +133,7 @@ Everything is optional; see `backend/.env.example` and `frontend/.env.example`.
 | Variable | Default | Purpose |
 |---|---|---|
 | `SECONDO_DB_PATH` | `backend/data/secondo.db` | SQLite file holding all records |
+| `MONGODB_URI` | unset | Store records in MongoDB Atlas instead (hosted demo). Percent-encode special characters in the password |
 | `SECONDO_BUSINESS_NAME` / `_TIMEZONE` / `_CURRENCY` | Neighbourhood Bakery / Asia/Kolkata / INR | "Today" is computed in the business's timezone |
 | `EXTRACTION_PROVIDER` | `auto` | `auto`, `ollama` or `rules` |
 | `OLLAMA_URL`, `OLLAMA_MODEL`, `OLLAMA_TIMEOUT_S` | `http://127.0.0.1:11434`, `gemma3:4b`, `60` | Local model endpoint |
@@ -217,7 +218,7 @@ properties.
 | **Gemma** (via Ollama) | ✅ Implemented: JSON-schema structured output, Pydantic validation, retry, timeout, labelled fallback | `backend/app/services/gemma.py`, `tests/test_gemma.py`. **Note:** tested against a mocked Ollama API; Ollama was not installed on the development machine, so it has **not yet been run against live Gemma**. |
 | **TabPFN** | ✅ Implemented and measured | `backend/app/services/tabpfn_provider.py`, results table above |
 | Render | ❌ Not done | No deployment exists yet |
-| MongoDB Atlas | ❌ Not done | Persistence is SQLite only, behind a `Repository` interface (`backend/app/repository.py`) where an Atlas adapter would fit |
+| **MongoDB Atlas** | ✅ Implemented and verified against a real Atlas cluster | `backend/app/repository_mongo.py` implements the same `Repository` interface; used when `MONGODB_URI` is set, otherwise SQLite. Unique index on `(business_id, dedupe_key)` enforces duplicate detection in the database. `SECONDO_TEST_BACKEND=mongodb uv run pytest` runs the full suite against Atlas (56/56 passing). The app ran the full workflow on Atlas and the approved plan survived a backend restart. Screenshot: `docs/screenshots/settings-atlas.png`. |
 | **Sentry** | ✅ Implemented and verified against a real Sentry project | Error monitoring + tracing (`backend/app/observability.py`), off unless `SENTRY_DSN` is set. Custom spans: `secondo.extract` → `gen_ai.request` (Gemma call: model, tokens, attempt), `secondo.plan.generate`, `secondo.forecast.backtest`, `secondo.model.tabpfn`. Gemma failures while Ollama is up and TabPFN crashes become issues. A real trace showed plan generation at 22.3 s, dominated by three ~7 s TabPFN runs. |
 | ElevenLabs | ❌ Not done | No voice briefing |
 
