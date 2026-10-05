@@ -56,3 +56,6 @@ services:
       # because Next.js compiles its /api rewrite during the build.
       - key: BACKEND_URL
         sync: false
+      # Inlined at build time; swaps the local "start the API" hint for a wake-up notice.
+      - key: NEXT_PUBLIC_HOSTED_DEMO
+        value: "true"
