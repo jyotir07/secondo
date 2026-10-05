@@ -50,9 +50,15 @@ export default function OverviewPage() {
       <>
         <PageHeader title="Good to see you." />
         <ErrorState message={health.error} onRetry={health.reload} />
-        <p className="mt-4 text-sm text-muted">
-          Start the API with <code className="rounded bg-line/60 px-1.5 py-0.5">uv run uvicorn app.main:create_app --factory</code> inside <code>backend/</code>.
-        </p>
+        {process.env.NEXT_PUBLIC_HOSTED_DEMO === "true" ? (
+          <p className="mt-4 text-sm text-muted">
+            The demo server sleeps when idle and can take a minute or two to wake up. Try again shortly.
+          </p>
+        ) : (
+          <p className="mt-4 text-sm text-muted">
+            Start the API with <code className="rounded bg-line/60 px-1.5 py-0.5">uv run uvicorn app.main:create_app --factory</code> inside <code>backend/</code>.
+          </p>
+        )}
       </>
     );
   }
