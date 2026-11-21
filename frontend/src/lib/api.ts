@@ -257,3 +257,29 @@ export async function api<T>(path: string, init?: RequestInit): Promise<T> {
 
 export const post = <T>(path: string, body: unknown = {}) =>
   api<T>(path, { method: "POST", body: JSON.stringify(body) });
+
+// The hosted demo's API sleeps when idle and takes about a minute to start. Until then requests
+// fail with a dropped connection or a 5xx, so callers can wait for the server instead of failing at once.
+const WAKE_TIMEOUT_MS = 90_000;
+let waking: Promise<boolean> | undefined;
+
+/** Polls /health until the server answers; false if it never does. Concurrent callers share one poll. */
+export function waitForServer(): Promise<boolean> {
+  waking ??= (async () => {
+    const deadline = Date.now() + WAKE_TIMEOUT_MS;
+    for (let delay = 1_000; Date.now() < deadline; delay = Math.min(delay * 2, 8_000)) {
+      try {
+        await api("/health");
+        return true;
+      } catch {
+        await new Promise((resolve) => setTimeout(resolve, delay));
+      }
+    }
+    return false;
+  })().finally(() => {
+    waking = undefined;
+  });
+  return waking;
+}
+
+export const isUnavailable = (e: unknown) => e instanceof ApiError && (e.status === 0 || e.status >= 500);
