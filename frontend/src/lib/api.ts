@@ -255,9 +255,6 @@ export async function api<T>(path: string, init?: RequestInit): Promise<T> {
   return res.json() as Promise<T>;
 }
 
-export const post = <T>(path: string, body: unknown = {}) =>
-  api<T>(path, { method: "POST", body: JSON.stringify(body) });
-
 // The hosted demo's API sleeps when idle and takes about a minute to start. Until then requests
 // fail with a dropped connection or a 5xx, so callers can wait for the server instead of failing at once.
 const WAKE_TIMEOUT_MS = 90_000;
@@ -283,3 +280,19 @@ export function waitForServer(): Promise<boolean> {
 }
 
 export const isUnavailable = (e: unknown) => e instanceof ApiError && (e.status === 0 || e.status >= 500);
+
+/**
+ * Sends a write once the server is awake. The proxy reports a sleeping API as a 5xx, which can't be
+ * told apart from a write that failed after it was applied, so the write itself is never retried.
+ */
+export async function send<T>(path: string, init: RequestInit): Promise<T> {
+  try {
+    await api("/health");
+  } catch (e) {
+    if (isUnavailable(e)) await waitForServer();
+  }
+  return api<T>(path, init);
+}
+
+export const post = <T>(path: string, body: unknown = {}) =>
+  send<T>(path, { method: "POST", body: JSON.stringify(body) });

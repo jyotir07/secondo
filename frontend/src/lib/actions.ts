@@ -1,4 +1,4 @@
-import { api, post, type ImportResult } from "./api";
+import { post, send, type ImportResult } from "./api";
 
 /** Lets the app shell refresh after data changes elsewhere (e.g. the sample-data badge). */
 export const DATA_CHANGED = "secondo:data-changed";
@@ -7,7 +7,7 @@ const announce = () => window.dispatchEvent(new Event(DATA_CHANGED));
 export async function importCsv(file: Blob, filename: string): Promise<ImportResult> {
   const form = new FormData();
   form.append("file", file, filename);
-  const result = await api<ImportResult>("/orders/import", { method: "POST", body: form });
+  const result = await send<ImportResult>("/orders/import", { method: "POST", body: form });
   announce();
   return result;
 }
