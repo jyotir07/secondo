@@ -150,13 +150,14 @@ cd backend && uv run pytest && uv run ruff check . && uv run ruff format --check
 cd frontend && npx tsc --noEmit && npx eslint . && npm run build
 ```
 
-There are 54 backend tests. They cover CSV parsing and invalid rows, duplicate detection,
+There are 66 backend tests. They cover CSV parsing and invalid rows, duplicate detection,
 extraction (rules and Gemma via a mocked Ollama API: valid output, retry on malformed JSON,
 schema violations, timeouts, missing model, and **fallback when Ollama isn't running**),
 forecast baselines, metric calculations, leakage checks for TabPFN features and the block-refit
 backtest, TabPFN fallback when missing or crashing, plan generation, approval state transitions,
-and the API end to end. One test runs the real TabPFN model and skips if the extra isn't
-installed.
+voice briefings (no customer names or notes, approved plans only, cached, ElevenLabs errors
+explained), Sentry staying off without a DSN and never sending default PII, and the API end to
+end. One test runs the real TabPFN model and skips if the extra isn't installed.
 
 ## Hosted demo on Render
 
