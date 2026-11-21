@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { api, isUnavailable, waitForServer } from "./api";
 
 export interface Resource<T> {
@@ -15,9 +15,13 @@ export function useApi<T>(path: string | null): Resource<T> {
   const [data, setData] = useState<T>();
   const [error, setError] = useState<string>();
   const [loading, setLoading] = useState(path !== null);
+  // Responses can arrive out of order (a changed path, an overlapping reload, a wait for a sleeping
+  // server), so only the most recent request may update state.
+  const latest = useRef(0);
 
   const load = useCallback(async () => {
     if (path === null) return;
+    const request = ++latest.current;
     setLoading(true);
     try {
       let result: T;
@@ -28,12 +32,14 @@ export function useApi<T>(path: string | null): Resource<T> {
         if (!isUnavailable(e) || !(await waitForServer())) throw e;
         result = await api<T>(path);
       }
+      if (request !== latest.current) return;
       setData(result);
       setError(undefined);
     } catch (e) {
+      if (request !== latest.current) return;
       setError(e instanceof Error ? e.message : String(e));
     } finally {
-      setLoading(false);
+      if (request === latest.current) setLoading(false);
     }
   }, [path]);
 
